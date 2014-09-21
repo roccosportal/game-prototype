@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="platformer" tilewidth="32" tileheight="32">
+  <image source="../gfx/platformer.png" width="416" height="384"/>
+  <tile id="56">
+   <objectgroup draworder="index">
+    <object x="0.0909091" y="0.0909091" width="31.9091" height="31.7273"/>
+   </objectgroup>
+  </tile>
+  <tile id="60">
+   <objectgroup draworder="index">
+    <object x="0.0909091" y="0.0909091" width="6.90909" height="31.8182"/>
+   </objectgroup>
+  </tile>
+  <tile id="61">
+   <objectgroup draworder="index">
+    <object x="0.0909091" y="0.0909091" width="31.9091" height="7.36364"/>
+   </objectgroup>
+  </tile>
+  <tile id="62">
+   <objectgroup draworder="index">
+    <object x="24.0909" y="1.66533e-16" width="7.72727" height="31.9091"/>
+   </objectgroup>
+  </tile>
+  <tile id="71">
+   <objectgroup draworder="index">
+    <object x="32" y="0.181818">
+     <polygon points="0,0 -31.9091,31.9091 0.0909091,31.8182"/>
+    </object>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1TEKgDAMQNFcy0GdFO9/IlFwEIy6NCK8B51KIPApjQAA/m5ITvdidmm4F2fjw/3WYqpYhN1dDy3qZT20+EbWoy/dgsMc1/+8twEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7axaVwaX
+  </data>
+ </layer>
+</map>
