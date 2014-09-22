@@ -9,7 +9,7 @@ STATE.DEAD = 3
 
 local EXPANDING_SPEED = 500
 local RADIUS = 80
-local MAX_RADIUS = 400
+local MAX_RADIUS = 130
 local STARTING_RADIUS = 40
 local STRENGTH_IMPACT = 0.2
 
@@ -32,6 +32,9 @@ function SoundVisualisation:update(dt)
       -- if the strength impact is to big, MAX_RADIUS will stop it
       if self.radius < RADIUS + self.strength * STRENGTH_IMPACT and self.radius < MAX_RADIUS then
         self.radius = self.radius +  (500 * dt)
+        if self.radius > MAX_RADIUS then
+            self.radius = MAX_RADIUS
+        end
       end
       if (love.timer.getTime() - self.creationTime ) > 4 then
           self.state = STATE.DYING
