@@ -10,7 +10,6 @@ function Map.create(path, world)
     self.world = world
     self.mapSTI = STI.new(path)
     
-    
 		self:initDynamicLayer()
     self.mapSTI:initWorldCollision(world)    
     return self
