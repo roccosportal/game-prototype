@@ -1,21 +1,28 @@
 require("src/game")
 require("src/sound-visualisation")
-local sti = require("lib/sti")
+require("src/map")
+
 
 onGround = true
 groundBody = nil
 
 function love.load()
-		love.window.setFullscreen(true)
+		-- love.window.setFullscreen(true)
 
-		map = sti.new("maps/test")
+	
+		-- map:removeLayer(1)
 
 		--collision = map:getCollisionMap("collision")
 
 		love.physics.setMeter(64) --the height of a meter our worlds will be 64px
 	  world = love.physics.newWorld(0, 9.81*64, true) --create a world for the bodies to exist in with horizontal gravity of 0 and vertical gravity of 9.81
 	  world:setCallbacks(beginContact, endContact, preSolve, postSolve)
-		collisionMap = map:enableCollision(world)
+		
+		game.map = Map.create("maps/test", world)
+		-- map = sti.new("maps/test")
+		-- dynamicLayer = map.layers["dynamic"]
+		-- 
+		-- collisionMap = map:initWorldCollision(world)
 
 	  objects = {} -- table to hold all our physical objects
 
@@ -32,7 +39,7 @@ end
 
 function love.update( dt )
 		world:update(dt)
-		map:update(dt)
+		game.map:update(dt)
 
 		x, y = objects.ball.body:getLinearVelocity( )
 
@@ -58,7 +65,7 @@ function love.update( dt )
 end
 
 function love.draw()
-		map:draw()
+		game.map:draw()
 
   	love.graphics.setColor(193, 47, 14) --set the drawing color to red for the ball
   	love.graphics.circle("fill", objects.ball.body:getX(), objects.ball.body:getY(), objects.ball.shape:getRadius())
@@ -78,7 +85,7 @@ function love.draw()
 end
 
 function love.resize(w, h)
-    map:resize(w, h)
+    game.map:resize(w, h)
 end
 
 
@@ -97,7 +104,9 @@ function beginContact(a, b, coll)
 
 
 		strength = math.abs(aX) + math.abs(aY) + math.abs(bX) + math.abs(bY)
-		game.soundVisualisations.new(x,y,strength)
+		if strength > 200 then
+			game.soundVisualisations.new(x,y,strength)
+		end
 end
 
 function endContact(a, b, coll)
