@@ -415,8 +415,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 609,
-          y = 423,
+          x = 420,
+          y = 427,
           width = 43,
           height = 38,
           rotation = 0,
@@ -481,6 +481,27 @@ return {
           y = 476,
           width = 19,
           height = 40,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "killAreas",
+      visible = true,
+      opacity = 1,
+      properties = {},
+      objects = {
+        {
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 601,
+          y = 470,
+          width = 37,
+          height = 31,
           rotation = 0,
           visible = true,
           properties = {}

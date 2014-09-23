@@ -12,6 +12,7 @@ function Map.create(path, world)
     self.mapSTI = STI.new(path)
 
 		self:initDynamicLayer()
+    self:initKillAreas()
     self.mapSTI:initWorldCollision(world)    
     return self
 end
@@ -42,8 +43,30 @@ function Map:initDynamicLayer()
   end
 end
 
+function Map:initKillAreas()
+  if self.mapSTI.layers["killAreas"] then
+
+    self.killAreas = self.mapSTI.layers["killAreas"].objects
+    for _,area in pairs(self.killAreas) do
+        area.body = love.physics.newBody(self.world, area.x + (area.width / 2), area.y + (area.height / 2))
+        area.shape = love.physics.newRectangleShape(0, 0, area.width, area.height)
+        area.fixture = love.physics.newFixture(area.body, area.shape, 5)
+        -- area.body:setActive(false) 
+               
+        -- body object should be used
+        area.x = nil
+        area.y = nil
+        area.width = nil
+        area.height = nil
+    end
+    self.mapSTI:removeLayer("killAreas")
+  end
+end
+
 function Map:update(dt)
     self.mapSTI:update(dt)
+    
+  
 end
 
 function Map:draw()

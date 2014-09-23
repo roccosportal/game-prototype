@@ -25,6 +25,13 @@ function Player.create(x,y, world)
         self.groundFixture = fixture
         self.onGround = true
       end
+      
+      -- check if player hit a kill area
+      for _, area in pairs(game.map.killAreas) do
+        if fixture == area.fixture then
+          logline("You are dead!")
+        end 
+      end
   end
 
   local function endContact(fixture, contact)

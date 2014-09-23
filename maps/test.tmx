@@ -55,7 +55,7 @@
   <object x="318" y="281" width="26" height="27"/>
   <object x="322" y="247" width="24" height="26"/>
   <object x="322" y="217" width="21" height="23"/>
-  <object x="609" y="423" width="43" height="38">
+  <object x="420" y="427" width="43" height="38">
    <properties>
     <property name="isPlayer" value="true"/>
    </properties>
@@ -65,5 +65,8 @@
   <object x="738" y="435" width="13" height="11"/>
   <object x="229" y="521" width="41" height="52"/>
   <object x="240" y="476" width="19" height="40"/>
+ </objectgroup>
+ <objectgroup name="killAreas">
+  <object x="601" y="470" width="37" height="31"/>
  </objectgroup>
 </map>
