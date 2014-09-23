@@ -2,6 +2,7 @@ require("src/game")
 require("src/sound-visualisation")
 require("src/map")
 require("src/player")
+require("src/contact-event-manager")
 game.camera = require("src/camera")
 
 
@@ -15,7 +16,10 @@ function love.load()
 
 		love.physics.setMeter(64) --the height of a meter our worlds will be 64px
 	  world = love.physics.newWorld(0, 9.81*64, true) --create a world for the bodies to exist in with horizontal gravity of 0 and vertical gravity of 9.81
-	  world:setCallbacks(beginContact, endContact, preSolve, postSolve)
+	 
+	
+	 	game.contactEventManager = ContactEventManager.create(world)
+		game.contactEventManager:onBeginContact(beginContact)
 		
 		game.map = Map.create("maps/test", world)
 		-- map = sti.new("maps/test")
@@ -95,14 +99,7 @@ function love.resize(w, h)
     game.map:resize(w, h)
 end
 
-
-
 function beginContact(a, b, coll)
-    
-
-		if b:getUserData() == "player" then
-			game.player:beginContact(a, coll)
-		end
 
 		local x,y = coll:getPositions()
 		local aX,aY = a:getBody():getLinearVelocity()
@@ -113,19 +110,6 @@ function beginContact(a, b, coll)
 		if strength > 200 then
 			game.soundVisualisations.new(x,y,strength)
 		end
-end
-
-function endContact(a, b, coll)
-		if b:getUserData() == "player" then
-				game.player:endContact(a, coll)
-		end
-end
-
-function preSolve(a, b, coll)
-end
-
-function postSolve(a, b, coll, normalimpulse1, tangentimpulse1, normalimpulse2, tangentimpulse2)
-
 end
 
 function logline(message)

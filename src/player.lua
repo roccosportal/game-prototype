@@ -18,6 +18,23 @@ function Player.create(x,y, world)
   self.fixture = love.physics.newFixture(self.body, self.shape, 1)
   self.fixture:setRestitution(0.4) 
   self.fixture:setUserData("player")
+  
+  local function beginContact(fixture, contact)
+      local x,y = contact:getNormal()
+      if y < -0.8 and y > -1.2 then
+        self.groundFixture = fixture
+        self.onGround = true
+      end
+  end
+
+  local function endContact(fixture, contact)
+      if self.groundFixture == fixture then
+        self.groundFixture = nil
+        self.onGround = false
+      end
+  end
+  
+  game.contactEventManager:register(self.fixture, beginContact, endContact)
   return self
 end
 
@@ -54,20 +71,7 @@ function Player:getCenter()
     return self:getX() - RADIUS, self:getY() - RADIUS
 end
 
-function Player:beginContact(fixture, contact)
-    local x,y = contact:getNormal()
-    if y < -0.8 and y > -1.2 then
-      self.groundFixture = fixture
-      self.onGround = true
-    end
-end
 
-function Player:endContact(fixture, contact)
-    if self.groundFixture == fixture then
-      self.groundFixture = nil
-      self.onGround = false
-    end
-end
 
 function Player:draw()
     love.graphics.setColor(193, 47, 14) 
