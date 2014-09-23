@@ -42,4 +42,52 @@ function camera:setScale(sx, sy)
   self.scaleY = sy or self.scaleY
 end
 
+-- updates the camera and move it to the position where it should be
+function camera:update(dt, x, y)
+  local ww = love.graphics.getWidth()
+  local wh = love.graphics.getHeight()
+  -- 
+  local step = 100 * dt
+  if self.x > x  then 
+    if self.x - step > x then
+      self.x = math.floor(self.x - step)
+    else
+      self.x = x
+    end
+  elseif self.x < x  then 
+    if self.x + step < x then
+      self.x = math.floor(self.x + step)
+    else
+      self.x = x
+    end
+  end
+  
+  if self.y > y  then 
+    if self.y - step > y then
+      self.y = math.floor(self.y - step)
+    else
+      self.y = y
+    end
+  elseif self.y < y  then 
+    if self.y + step < y then
+      self.y = math.floor(self.y + step)
+    else
+      self.y = y
+    end
+  end
+  
+  local border = 100
+  if self.x + ww / 2 - border < x  then
+      self.x = math.floor(x - ww / 2 + border)
+  elseif self.x - ww / 2 + border > x then
+      self.x = math.floor(x + ww / 2 - border)
+  end
+  
+  if self.y + wh / 2 - border < y  then
+      self.y = math.floor(y - wh / 2 + border)
+  elseif self.y - wh / 2 + border > y then
+      self.y = math.floor(y + wh / 2 - border)
+  end
+end
+
 return camera

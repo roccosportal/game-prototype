@@ -44,7 +44,7 @@ function love.update( dt )
 		world:update(dt)
 		game.map:update(dt)
 
-		x, y = objects.ball.body:getLinearVelocity( )
+		local x, y = objects.ball.body:getLinearVelocity( )
 
   	if love.keyboard.isDown("right") then
 			if x < 200 then
@@ -68,54 +68,15 @@ function love.update( dt )
 		
 		
 		-- center camera
+		
 		local ww = love.graphics.getWidth()
 		local wh = love.graphics.getHeight()
-		local cx = math.floor(objects.ball.body:getX() - (ww / 2) - objects.ball.shape:getRadius())
-		local cy = math.floor(objects.ball.body:getY() - (wh / 2) - objects.ball.shape:getRadius())
+		local x = math.floor(objects.ball.body:getX() - (ww / 2) - objects.ball.shape:getRadius())
+		local y = math.floor(objects.ball.body:getY() - (wh / 2) - objects.ball.shape:getRadius())
 		
-		local step = 100 * dt
-		if game.camera.x > cx  then 
-			if game.camera.x - step > cx then
-				game.camera.x = math.floor(game.camera.x - step)
-			else
-				game.camera.x = cx
-			end
-		elseif game.camera.x < cx  then 
-			if game.camera.x + step < cx then
-				game.camera.x = math.floor(game.camera.x + step)
-			else
-				game.camera.x = cx
-			end
-		end
-		
-		if game.camera.y > cy  then 
-			if game.camera.y - step > cy then
-				game.camera.y = math.floor(game.camera.y - step)
-			else
-				game.camera.y = cy
-			end
-		elseif game.camera.y < cy  then 
-			if game.camera.y + step < cy then
-				game.camera.y = math.floor(game.camera.y + step)
-			else
-				game.camera.y = cy
-			end
-		end
-		
-		local border = 100
-		if game.camera.x + ww / 2 - border < cx  then
-				game.camera.x = math.floor(cx - ww / 2 + border)
-		elseif game.camera.x - ww / 2 + border > cx then
-				game.camera.x = math.floor(cx + ww / 2 - border)
-		end
-		
-		if game.camera.y + wh / 2 - border < cy  then
-				game.camera.y = math.floor(cy - wh / 2 + border)
-		elseif game.camera.y - wh / 2 + border > cy then
-				game.camera.y = math.floor(cy + wh / 2 - border)
-		end
-		
-		
+		game.camera:update(dt, x, y)
+	
+	
 end
 
 function love.draw()
