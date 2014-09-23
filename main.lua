@@ -7,8 +7,7 @@ game.camera = require("src/camera")
 onGround = true
 groundBody = nil
 
-function love.load()
-		print(_VERSION)
+function love.load()	
 		-- love.window.setFullscreen(true)
 
 	

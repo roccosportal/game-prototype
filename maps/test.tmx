@@ -37,7 +37,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1UEKgCAQQNG5VotqVXT/E0VBiyDLjRPIe+BKhIGvGAHQj6liQY9K932oOLs1nIu7+WP/aLFkDMLprYcW+Uo9tPhHqceYOgWXNZ7/eW8DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANrZAVg1CMU=
+   eJzt2EEKwjAQBdBseigX6krx/icqFlyIxsTQjCG+B1m1gYGf0JmmBDCPU8WCGeXO+6Fi761jXTw7F57fs7hEFMLmUx6yiJfLQxa/kcvjGFoFD9f0/jvvbvDPSn0VseQxll55mB3bfJPHUvmeHrldaQ6s+beoJ9uPOXAs5g4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeLUCT54RGg==
   </data>
  </layer>
  <objectgroup name="Object Layer 1">
@@ -55,10 +55,11 @@
   <object x="318" y="281" width="26" height="27"/>
   <object x="322" y="247" width="24" height="26"/>
   <object x="322" y="217" width="21" height="23"/>
-  <object x="103" y="50" width="43" height="38">
+  <object x="609" y="423" width="43" height="38">
    <properties>
     <property name="isPlayer" value="true"/>
    </properties>
   </object>
+  <object x="493" y="138" width="13" height="14"/>
  </objectgroup>
 </map>

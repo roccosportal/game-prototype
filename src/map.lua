@@ -20,13 +20,12 @@ end
 function Map:initDynamicLayer()
   if self.mapSTI.layers["dynamic"] then
     self.dynamics = self.mapSTI.layers["dynamic"]
-    for _,object in ipairs(self.dynamics.objects) do
+    for _,object in pairs(self.dynamics.objects) do
       if object.properties.isPlayer then
           -- use the center of the object as starting position
           self.player.x = object.x + object.width / 2
           self.player.y = object.y + object.height / 2
-          logline("y :" .. self.player.y)
-          table.remove(self.dynamics.objects, _)
+          self.dynamics.objects[_] = nil
       elseif object.shape == "rectangle" then
         object.body = love.physics.newBody(self.world, object.x + (object.width / 2), object.y + (object.height / 2), "dynamic")
         object.shape = love.physics.newRectangleShape(0, 0, object.width, object.height)
@@ -50,7 +49,7 @@ end
 function Map:draw()
     self.mapSTI:draw()
     love.graphics.setColor(50, 50, 50)
-    for _,object in ipairs(self.dynamics.objects) do
+    for _,object in pairs(self.dynamics.objects) do
           love.graphics.polygon("fill", object.body:getWorldPoints(object.shape:getPoints()))
     end
 end
