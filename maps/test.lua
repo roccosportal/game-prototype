@@ -6,6 +6,7 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
+  backgroundcolor = { 42, 194, 250 },
   properties = {},
   tilesets = {
     {
@@ -432,6 +433,78 @@ return {
           y = 138,
           width = 13,
           height = 14,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 729,
+          y = 452,
+          width = 27,
+          height = 56,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 738,
+          y = 435,
+          width = 13,
+          height = 11,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 229,
+          y = 521,
+          width = 41,
+          height = 52,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 240,
+          y = 476,
+          width = 19,
+          height = 40,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 646,
+          y = 121,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 590,
+          y = 242,
+          width = 0,
+          height = 0,
           rotation = 0,
           visible = true,
           properties = {}

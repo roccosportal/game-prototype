@@ -61,5 +61,9 @@
    </properties>
   </object>
   <object x="493" y="138" width="13" height="14"/>
+  <object x="729" y="452" width="27" height="56"/>
+  <object x="738" y="435" width="13" height="11"/>
+  <object x="229" y="521" width="41" height="52"/>
+  <object x="240" y="476" width="19" height="40"/>
  </objectgroup>
 </map>

@@ -47,7 +47,7 @@ function love.load()
 		
 
 		local w, h = game.map:getWorldSize()
-		canvas = love.graphics.newCanvas(w, h)
+		fogCanvas = love.graphics.newCanvas()
 end
 
 
@@ -90,30 +90,39 @@ function love.update( dt )
 end
 
 function love.draw()
-		love.graphics.setBackgroundColor(255, 255, 255)
+		
 	
+		
+		love.graphics.setCanvas()
+		
 		game.camera:set()
+		
+		love.graphics.setBackgroundColor(255, 255, 255)
+		love.graphics.clear()
+		
+		
 		game.map:draw()
-
   	love.graphics.setColor(193, 47, 14) --set the drawing color to red for the ball
   	love.graphics.circle("fill", objects.ball.body:getX(), objects.ball.body:getY(), objects.ball.shape:getRadius())
-		game.camera:unset()
+		
 		-- draw white over layer and only make certain areas visible
-		love.graphics.setCanvas(canvas)
-	  canvas:clear(255,255, 255, 255)
+		
+		love.graphics.setCanvas(fogCanvas)
+	  fogCanvas:clear(255,255, 255, 255)
 	  love.graphics.setBlendMode("subtractive")
 		for _,soundVisualisation in pairs(game.soundVisualisations.list) do
 				love.graphics.setColor(255, 255, 255, soundVisualisation:getAlpha())
 				love.graphics.circle("fill", soundVisualisation:getX(), soundVisualisation:getY(), soundVisualisation:getRadius(), 200)
 		end
 		love.graphics.setColor(255, 255, 255, 255)
+		
 		love.graphics.setCanvas()
 		love.graphics.setBlendMode('alpha')
 		
-		game.camera:set()
-		love.graphics.draw(canvas)
 		game.camera:unset()
 		
+		love.graphics.draw(fogCanvas)
+	
 end
 
 function love.resize(w, h)
