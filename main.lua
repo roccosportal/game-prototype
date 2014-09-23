@@ -1,11 +1,9 @@
 require("src/game")
 require("src/sound-visualisation")
 require("src/map")
+require("src/player")
 game.camera = require("src/camera")
 
-
-onGround = true
-groundBody = nil
 
 function love.load()	
 		-- love.window.setFullscreen(true)
@@ -26,26 +24,10 @@ function love.load()
 		-- collisionMap = map:initWorldCollision(world)
 
 
-		local pX, pY = game.map:getPlayerStartingPosition()
+		local px, py = game.map:getPlayerStartingPosition()
+		game.camera:setCenter(px, py)
+		game.player = Player.create(px, py, world)
 		
-		game.camera:setCenter(pX, pY)
-		
-		-- the starting position marks the center of the ball
-		-- we need to translate the position to the upper right corner
-		local ball_radius = 20
-		pX = pX - ball_radius
-		pY = pY - ball_radius
-
-	  objects = {} -- table to hold all our physical objects
-		objects.ball = {}
-		objects.ball.body = love.physics.newBody(world, pX, pY, "dynamic") --place the body in the center of the world and make it dynamic, so it can move around
-		objects.ball.shape = love.physics.newCircleShape(ball_radius) --the ball's shape has a radius of 20
-		objects.ball.fixture = love.physics.newFixture(objects.ball.body, objects.ball.shape, 1) -- Attach fixture to body and give it a density of 1.
-		objects.ball.fixture:setRestitution(0.4) --let the ball bounce
-		objects.ball.fixture:setUserData("player")
-		
-		
-
 		local w, h = game.map:getWorldSize()
 		fogCanvas = love.graphics.newCanvas()
 end
@@ -55,25 +37,7 @@ function love.update( dt )
 		world:update(dt)
 		game.map:update(dt)
 
-		local x, y = objects.ball.body:getLinearVelocity( )
-
-  	if love.keyboard.isDown("right") then
-			if x < 200 then
-	    	objects.ball.body:applyForce(200, 0)
-			end
-
-  	elseif love.keyboard.isDown("left") then
-			if x > -400 then
-	    	objects.ball.body:applyForce(-200, 0)
-			end
-		end
-		if love.keyboard.isDown("up") then
-			if onGround and y > -400 then
-				objects.ball.body:setLinearVelocity( x, -400)
-			end
-		elseif love.keyboard.isDown("down") then
-				objects.ball.body:applyForce(0, 1000)
-	  end
+		game.player:update(dt)
 
 		game.soundVisualisations.update(dt)
 		
@@ -81,9 +45,11 @@ function love.update( dt )
 		-- try center camera at player
 		local ww = love.graphics.getWidth()
 		local wh = love.graphics.getHeight()
-		local x = math.floor(objects.ball.body:getX() - (ww / 2) - objects.ball.shape:getRadius())
-		local y = math.floor(objects.ball.body:getY() - (wh / 2) - objects.ball.shape:getRadius())
 		
+		local x, y = game.player:getCenter()
+		x =  math.floor(x - ww / 2)
+		y =  math.floor(y - wh / 2)
+
 		game.camera:update(dt, x, y)
 	
 	
@@ -102,8 +68,8 @@ function love.draw()
 		
 		
 		game.map:draw()
-  	love.graphics.setColor(193, 47, 14) --set the drawing color to red for the ball
-  	love.graphics.circle("fill", objects.ball.body:getX(), objects.ball.body:getY(), objects.ball.shape:getRadius())
+  	
+		game.player:draw()
 		
 		-- draw white over layer and only make certain areas visible
 		
@@ -132,11 +98,10 @@ end
 
 
 function beginContact(a, b, coll)
-    local x,y = coll:getNormal()
+    
 
-		if b:getUserData() == "player" and y < -0.8 and y > -1.2 then
-			groundBody = a
-			onGround = true
+		if b:getUserData() == "player" then
+			game.player:beginContact(a, coll)
 		end
 
 		local x,y = coll:getPositions()
@@ -151,9 +116,8 @@ function beginContact(a, b, coll)
 end
 
 function endContact(a, b, coll)
-		if b:getUserData() == "player"  and groundBody == a then
-			groundBody = nil
-			onGround = false
+		if b:getUserData() == "player" then
+				game.player:endContact(a, coll)
 		end
 end
 
