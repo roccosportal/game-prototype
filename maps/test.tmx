@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" backgroundcolor="#2ac2fa">
  <tileset firstgid="1" name="platformer" tilewidth="32" tileheight="32">
   <image source="../gfx/platformer.png" width="416" height="384"/>
   <tile id="4">

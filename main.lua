@@ -90,6 +90,8 @@ function love.update( dt )
 end
 
 function love.draw()
+		love.graphics.setBackgroundColor(255, 255, 255)
+	
 		game.camera:set()
 		game.map:draw()
 
@@ -98,7 +100,7 @@ function love.draw()
 		game.camera:unset()
 		-- draw white over layer and only make certain areas visible
 		love.graphics.setCanvas(canvas)
-	  canvas:clear(255,255, 255, 250)
+	  canvas:clear(255,255, 255, 255)
 	  love.graphics.setBlendMode("subtractive")
 		for _,soundVisualisation in pairs(game.soundVisualisations.list) do
 				love.graphics.setColor(255, 255, 255, soundVisualisation:getAlpha())
