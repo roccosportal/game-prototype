@@ -90,4 +90,12 @@ function camera:update(dt, x, y)
   end
 end
 
+function camera:setCenter(x,y)
+  local ww = love.graphics.getWidth()
+  local wh = love.graphics.getHeight()
+  local cx = math.floor(x - (ww / 2))
+  local cy = math.floor(y - (wh / 2))
+  self:setPosition(cx, cy)
+end
+
 return camera

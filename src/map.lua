@@ -8,6 +8,7 @@ function Map.create(path, world)
       objects = {}
     }
     self.world = world
+    self.player = {x = 0, y = 0}
     self.mapSTI = STI.new(path)
     
 		self:initDynamicLayer()
@@ -16,12 +17,17 @@ function Map.create(path, world)
 end
 
 
-
 function Map:initDynamicLayer()
   if self.mapSTI.layers["dynamic"] then
     self.dynamics = self.mapSTI.layers["dynamic"]
     for _,object in ipairs(self.dynamics.objects) do
-      if object.shape == "rectangle" then
+      if object.properties.isPlayer then
+          -- use the center of the object as starting position
+          self.player.x = object.x + object.width / 2
+          self.player.y = object.y + object.height / 2
+          logline("y :" .. self.player.y)
+          table.remove(self.dynamics.objects, _)
+      elseif object.shape == "rectangle" then
         object.body = love.physics.newBody(self.world, object.x + (object.width / 2), object.y + (object.height / 2), "dynamic")
         object.shape = love.physics.newRectangleShape(0, 0, object.width, object.height)
         object.fixture = love.physics.newFixture(object.body, object.shape, 5)
@@ -55,6 +61,10 @@ end
 
 function Map:getWorldSize()
   return self.mapSTI.width * self.mapSTI.tilewidth, self.mapSTI.height * self.mapSTI.tileheight
+end
+
+function Map:getPlayerStartingPosition()
+  return self.player.x, self.player.y
 end
   
   

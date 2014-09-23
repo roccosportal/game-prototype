@@ -26,14 +26,26 @@ function love.load()
 		-- 
 		-- collisionMap = map:initWorldCollision(world)
 
-	  objects = {} -- table to hold all our physical objects
 
+		local pX, pY = game.map:getPlayerStartingPosition()
+		
+		game.camera:setCenter(pX, pY)
+		
+		-- the starting position marks the center of the ball
+		-- we need to translate the position to the upper right corner
+		local ball_radius = 20
+		pX = pX - ball_radius
+		pY = pY - ball_radius
+
+	  objects = {} -- table to hold all our physical objects
 		objects.ball = {}
-		objects.ball.body = love.physics.newBody(world, 30, 30, "dynamic") --place the body in the center of the world and make it dynamic, so it can move around
-		objects.ball.shape = love.physics.newCircleShape(20) --the ball's shape has a radius of 20
+		objects.ball.body = love.physics.newBody(world, pX, pY, "dynamic") --place the body in the center of the world and make it dynamic, so it can move around
+		objects.ball.shape = love.physics.newCircleShape(ball_radius) --the ball's shape has a radius of 20
 		objects.ball.fixture = love.physics.newFixture(objects.ball.body, objects.ball.shape, 1) -- Attach fixture to body and give it a density of 1.
 		objects.ball.fixture:setRestitution(0.4) --let the ball bounce
 		objects.ball.fixture:setUserData("player")
+		
+		
 
 		local w, h = game.map:getWorldSize()
 		canvas = love.graphics.newCanvas(w, h)
@@ -67,8 +79,7 @@ function love.update( dt )
 		game.soundVisualisations.update(dt)
 		
 		
-		-- center camera
-		
+		-- try center camera at player
 		local ww = love.graphics.getWidth()
 		local wh = love.graphics.getHeight()
 		local x = math.floor(objects.ball.body:getX() - (ww / 2) - objects.ball.shape:getRadius())

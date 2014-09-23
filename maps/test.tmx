@@ -55,5 +55,10 @@
   <object x="318" y="281" width="26" height="27"/>
   <object x="322" y="247" width="24" height="26"/>
   <object x="322" y="217" width="21" height="23"/>
+  <object x="103" y="50" width="43" height="38">
+   <properties>
+    <property name="isPlayer" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

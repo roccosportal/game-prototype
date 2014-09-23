@@ -409,6 +409,20 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 103,
+          y = 50,
+          width = 43,
+          height = 38,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["isPlayer"] = "true"
+          }
         }
       }
     }
