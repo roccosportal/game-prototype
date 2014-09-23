@@ -52,5 +52,9 @@ end
 function Map:resize()
     self.mapSTI:resize()
 end
+
+function Map:getWorldSize()
+  return self.mapSTI.width * self.mapSTI.tilewidth, self.mapSTI.height * self.mapSTI.tileheight
+end
   
   

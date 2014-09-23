@@ -35,7 +35,8 @@ function love.load()
 		objects.ball.fixture:setRestitution(0.4) --let the ball bounce
 		objects.ball.fixture:setUserData("player")
 
-		canvas = love.graphics.newCanvas(love.window.getWidth(), love.window.getHeight())
+		local w, h = game.map:getWorldSize()
+		canvas = love.graphics.newCanvas(w, h)
 end
 
 
