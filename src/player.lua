@@ -22,23 +22,12 @@ function Player.create(x,y, world)
   self.moveTo = nil
   
   
-  
   local function beginContact(fixture, contact)
       local x,y = contact:getNormal()
       if y < -0.8 and y > -1.2 then
         self.groundFixture = fixture
         self.onGround = true
       end
-      
-      -- -- check if player hit a kill area
-      -- for _, area in pairs(game.map.killAreas) do
-      --   if fixture == area.fixture then
-      --     -- area.fixture:getBody():setAwake(false)
-      --     --logline("You are dead!")
-      --     self:moveToPoint(self.savePoint.x, self.savePoint.y, true)
-      --     break
-      --   end 
-      -- end
   end
 
   local function endContact(fixture, contact)
@@ -59,6 +48,10 @@ function Player:update(dt)
     self.body:setY(self.moveTo.y)
     self.body:setLinearVelocity(0,0)
     self.moveTo = nil
+  end
+  
+  if self.state == STATE_DEAD then
+    
   end
   
   local x, y = self.body:getLinearVelocity( )
@@ -110,5 +103,6 @@ function Player:setSavePoint(x, y)
 end
 
 function Player:kill()
+    game.overlays.damage:show()
     self:moveToPoint(self.savePoint.x, self.savePoint.y, true)
 end

@@ -3,6 +3,7 @@ require("src/sound-visualisation")
 require("src/map")
 require("src/player")
 require("src/contact-event-manager")
+require("src/overlays/damage")
 game.camera = require("src/camera")
 
 
@@ -34,6 +35,9 @@ function love.load()
 		
 		local w, h = game.map:getWorldSize()
 		fogCanvas = love.graphics.newCanvas()
+		
+		game.overlays = {}
+		game.overlays.damage = DamageOverlay.create()
 end
 
 
@@ -55,7 +59,8 @@ function love.update( dt )
 		y =  math.floor(y - wh / 2)
 
 		game.camera:update(dt, x, y)
-	
+		
+	  game.overlays.damage:update(dt)
 	
 end
 
@@ -92,6 +97,8 @@ function love.draw()
 		game.camera:unset()
 		
 		love.graphics.draw(fogCanvas)
+		
+		game.overlays.damage:draw()
 	
 end
 
