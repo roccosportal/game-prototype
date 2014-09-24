@@ -93,7 +93,7 @@ function Map:initSavePoints()
       
       savePoint.body = love.physics.newBody(self.world, savePoint.x + (savePoint.width / 2), savePoint.y + (savePoint.height / 2))
       savePoint.shape = love.physics.newRectangleShape(0, 0, savePoint.width, savePoint.height)
-      savePoint.fixture = love.physics.newFixture(savePoint.body, savePoint.shape, -1)
+      savePoint.fixture = love.physics.newFixture(savePoint.body, savePoint.shape, 5)
       
       -- body object should be used
       savePoint.x = nil
