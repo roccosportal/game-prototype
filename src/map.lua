@@ -13,6 +13,7 @@ function Map.create(path, world)
 
 		self:initDynamicLayer()
     self:initKillAreas()
+    self:initSavePoints()
     self.mapSTI:initWorldCollision(world)    
     return self
 end
@@ -45,9 +46,16 @@ end
 
 function Map:initKillAreas()
   if self.mapSTI.layers["killAreas"] then
-
-    self.killAreas = self.mapSTI.layers["killAreas"].objects
-    for _,area in pairs(self.killAreas) do
+    
+    local function setKillArea(area)
+        local function contactFilter(fixture)
+          if game.player.fixture == fixture then
+            game.player:kill()
+            return false -- no hit, no sound visualisation
+          end
+          return nil -- let somebody else decide if I am hit
+        end
+      
         area.body = love.physics.newBody(self.world, area.x + (area.width / 2), area.y + (area.height / 2))
         area.shape = love.physics.newRectangleShape(0, 0, area.width, area.height)
         area.fixture = love.physics.newFixture(area.body, area.shape, 5)
@@ -58,8 +66,52 @@ function Map:initKillAreas()
         area.y = nil
         area.width = nil
         area.height = nil
+        
+        game.contactEventManager:register(area.fixture, nil, nil, nil, nil, contactFilter)
+    end
+
+    self.killAreas = self.mapSTI.layers["killAreas"].objects
+    for _,area in pairs(self.killAreas) do
+        setKillArea(area)
     end
     self.mapSTI:removeLayer("killAreas")
+  end
+end
+
+
+function Map:initSavePoints()
+  if self.mapSTI.layers["savePoints"] then
+    
+    local function setSavePoint(savePoint) 
+      local function contactFilter(fixture)
+        -- nothing hits me
+        if game.player.fixture == fixture then
+          game.player:setSavePoint(savePoint.body:getX(),savePoint.body:getY())
+        end
+        return false
+      end
+      
+      savePoint.body = love.physics.newBody(self.world, savePoint.x + (savePoint.width / 2), savePoint.y + (savePoint.height / 2))
+      savePoint.shape = love.physics.newRectangleShape(0, 0, savePoint.width, savePoint.height)
+      savePoint.fixture = love.physics.newFixture(savePoint.body, savePoint.shape, -1)
+      
+      -- body object should be used
+      savePoint.x = nil
+      savePoint.y = nil
+      savePoint.width = nil
+      savePoint.height = nil
+      
+      game.contactEventManager:register(savePoint.fixture, nil, nil, nil, nil, contactFilter)
+    end
+    
+    
+  
+    
+    self.savePoints = self.mapSTI.layers["savePoints"].objects
+    for _,savePoint in pairs(self.savePoints) do
+        setSavePoint(savePoint)
+    end
+    self.mapSTI:removeLayer("savePoints")
   end
 end
 

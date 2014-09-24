@@ -7,6 +7,11 @@
     <object x="0" y="0.25" width="31.8125" height="31.6875"/>
    </objectgroup>
   </tile>
+  <tile id="55">
+   <objectgroup draworder="index">
+    <object x="1.94289e-15" y="-0.181818" width="31.8182" height="32.1818"/>
+   </objectgroup>
+  </tile>
   <tile id="56">
    <objectgroup draworder="index">
     <object x="0.0909091" y="0.0909091" width="31.9091" height="31.7273"/>
@@ -37,7 +42,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2EEKwjAQBdBseigX6krx/icqFlyIxsTQjCG+B1m1gYGf0JmmBDCPU8WCGeXO+6Fi761jXTw7F57fs7hEFMLmUx6yiJfLQxa/kcvjGFoFD9f0/jvvbvDPSn0VseQxll55mB3bfJPHUvmeHrldaQ6s+beoJ9uPOXAs5g4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeLUCT54RGg==
+   eJzt2EEKAiEUgGE3naDL1KJaFd3/RDGBi4FMk8Ye9n3QqgmE3yGfKQHM49zwgRmV9vux4bf3DdfF2qXy/dLiOmIhPL3rocV4pR5a/Eapx2noKshu6fX/vHeDf1Y7VzFWT4/911dBttX7sZzLWu5d3MOsfdJj1/icM3K/2hzYs8e16GcOjCX3OCR7PILcwxwegx6xmAdj0SMWPWLRI5bSPbv7i3n0zPTaAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDiAV+SG1g=
   </data>
  </layer>
  <objectgroup name="Object Layer 1">
@@ -55,7 +60,7 @@
   <object x="318" y="281" width="26" height="27"/>
   <object x="322" y="247" width="24" height="26"/>
   <object x="322" y="217" width="21" height="23"/>
-  <object x="420" y="427" width="43" height="38">
+  <object x="930" y="379" width="43" height="38">
    <properties>
     <property name="isPlayer" value="true"/>
    </properties>
@@ -63,10 +68,20 @@
   <object x="493" y="138" width="13" height="14"/>
   <object x="729" y="452" width="27" height="56"/>
   <object x="738" y="435" width="13" height="11"/>
-  <object x="229" y="521" width="41" height="52"/>
-  <object x="240" y="476" width="19" height="40"/>
+  <object x="321" y="747" width="41" height="52"/>
+  <object x="334" y="700.667" width="19" height="40"/>
  </objectgroup>
  <objectgroup name="killAreas">
-  <object x="601" y="470" width="37" height="31"/>
+  <object x="608" y="501" width="26" height="15"/>
+  <object x="198.667" y="789.333" width="66.6667" height="8.66667"/>
+ </objectgroup>
+ <objectgroup name="spikes">
+  <object gid="99" x="606" y="520"/>
+  <object gid="99" x="189.333" y="807.333"/>
+  <object gid="99" x="211.333" y="808"/>
+  <object gid="99" x="234.667" y="808.667"/>
+ </objectgroup>
+ <objectgroup name="savePoints">
+  <object x="384" y="354" width="60" height="154"/>
  </objectgroup>
 </map>

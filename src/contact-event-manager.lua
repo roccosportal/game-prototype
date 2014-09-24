@@ -9,7 +9,8 @@ function ContactEventManager.create(world)
       onBeginContact = {},
       onEndContact = {},
       onPreSolve = {},
-      onPostSolve = {}
+      onPostSolve = {},
+      onContactFilter = {}
   }
   
   local function beginContact(a, b, contact)
@@ -34,6 +35,12 @@ function ContactEventManager.create(world)
   
   world:setCallbacks(beginContact, endContact, preSolve, postSolve)
   
+  local function contactFilter(a, b)
+      self:call(self.callbacks.onContactFilter, {a, b})
+      return self:invokeEvent("contactFilter", a, b, {})
+  end
+  
+  world:setContactFilter(contactFilter)
   return self
 end
 
@@ -53,11 +60,12 @@ function ContactEventManager:onPostSolve(callback)
   table.insert(self.callbacks.onPostSolve, callback)
 end
 
-function ContactEventManager:register(fixture, beginContact, endContact, preSolve, postSolve)
-  beginContact = beginContact or function() end
-  endContact = endContact or function() end
-  preSolve = preSolve or function() end
-  postSolve = postSolve or function() end
+function ContactEventManager:register(fixture, beginContact, endContact, preSolve, postSolve, contactFilter)
+  -- beginContact = beginContact or function() return nil end
+  -- endContact = endContact or function() return nil end
+  -- preSolve = preSolve or function() return nil end
+  -- postSolve = postSolve or function() return nil end
+  -- contactFilter = contactFilter or function() return nil end
   
 
   data = {
@@ -66,7 +74,8 @@ function ContactEventManager:register(fixture, beginContact, endContact, preSolv
         beginContact = beginContact,
         endContact = endContact,
         preSolve = preSolve,
-        postSolve = postSolve
+        postSolve = postSolve,
+        contactFilter = contactFilter
       }
   }
   table.insert(self.fixtures, data)
@@ -81,16 +90,35 @@ end
 function ContactEventManager:invokeEvent(event,a, b, args)
     local aMatch = false
     local bMatch = false
+    local returnValueA = nil
+    local returnValueB = nil
     -- try finding fixtures in the table
     for _, data in ipairs(self.fixtures) do
       if not aMatch and a == data.fixture then
-        data.callbacks[event](b, unpack(args))
+        if data.callbacks[event] ~= nil then
+            returnValueA = data.callbacks[event](b, unpack(args)) 
+        end 
         aMatch = true
       elseif not bMatch and b == data.fixture then
-        data.callbacks[event](a, unpack(args))
+        if data.callbacks[event] ~= nil then
+            returnValueB = data.callbacks[event](a, unpack(args))
+        end 
         bMatch = true
       elseif aMatch and bMatch then
         break
       end
+    end
+    
+    -- mergin returnValues
+    if returnValueA == nil and returnValueB == nil then
+      return true
+    elseif returnValueA ~= nil and returnValueB == nil then
+      return returnValueA
+    elseif returnValueA == nil and returnValueB ~= nil then
+      return returnValueB
+    elseif returnValueA == returnValueB then
+      return returnValueA
+    else
+      return false -- false is the more greedy one
     end
 end

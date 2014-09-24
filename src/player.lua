@@ -1,7 +1,7 @@
 Player = {}
 Player.__index = Player
 
-local RADIUS = 20
+local RADIUS = 10
 
 function Player.create(x,y, world)
   local self = setmetatable({}, Player)
@@ -13,11 +13,15 @@ function Player.create(x,y, world)
   x = x - RADIUS
   y = y - RADIUS
   
+  self.savePoint = {x = x, y = y}
   self.body = love.physics.newBody(world, x, y, "dynamic") 
   self.shape = love.physics.newCircleShape(RADIUS) 
-  self.fixture = love.physics.newFixture(self.body, self.shape, 1)
+  self.fixture = love.physics.newFixture(self.body, self.shape, 5)
   self.fixture:setRestitution(0.4) 
   self.fixture:setUserData("player")
+  self.moveTo = nil
+  
+  
   
   local function beginContact(fixture, contact)
       local x,y = contact:getNormal()
@@ -26,12 +30,15 @@ function Player.create(x,y, world)
         self.onGround = true
       end
       
-      -- check if player hit a kill area
-      for _, area in pairs(game.map.killAreas) do
-        if fixture == area.fixture then
-          logline("You are dead!")
-        end 
-      end
+      -- -- check if player hit a kill area
+      -- for _, area in pairs(game.map.killAreas) do
+      --   if fixture == area.fixture then
+      --     -- area.fixture:getBody():setAwake(false)
+      --     --logline("You are dead!")
+      --     self:moveToPoint(self.savePoint.x, self.savePoint.y, true)
+      --     break
+      --   end 
+      -- end
   end
 
   local function endContact(fixture, contact)
@@ -46,6 +53,14 @@ function Player.create(x,y, world)
 end
 
 function Player:update(dt)
+  -- move the player only in the update method, because the body might be locked elsewhere
+  if self.moveTo then
+    self.body:setX(self.moveTo.x)
+    self.body:setY(self.moveTo.y)
+    self.body:setLinearVelocity(0,0)
+    self.moveTo = nil
+  end
+  
   local x, y = self.body:getLinearVelocity( )
   if love.keyboard.isDown("right") then
     if x < 200 then
@@ -83,4 +98,17 @@ end
 function Player:draw()
     love.graphics.setColor(193, 47, 14) 
     love.graphics.circle("fill", self:getX(), self:getY(), RADIUS)
+end
+
+function Player:moveToPoint(x, y, freeze)
+    -- move the player only in the update method, because the body might be locked elsewhere
+    self.moveTo = {x = x, y = y, freeze = freeze}
+end
+
+function Player:setSavePoint(x, y)
+    self.savePoint = {x = x, y = y}
+end
+
+function Player:kill()
+    self:moveToPoint(self.savePoint.x, self.savePoint.y, true)
 end
