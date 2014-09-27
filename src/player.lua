@@ -3,11 +3,15 @@ Player.__index = Player
 
 local RADIUS = 10
 
+local JUMP_DECREASE = 400
+local JUMP_SPEED = 400
+local SIDE_SPPED = 150
+
 function Player.create(x,y, world)
   local self = setmetatable({}, Player)
   self.groundFixture = nil
   self.onGround = true
-  
+  self.isJumping = false
   -- the starting position marks the center of the ball
   -- we need to translate the position to the upper right corner
   x = x - RADIUS
@@ -27,6 +31,7 @@ function Player.create(x,y, world)
       if y < -0.8 and y > -1.2 then
         self.groundFixture = fixture
         self.onGround = true
+        self.isJumping = false
       end
   end
 
@@ -50,28 +55,27 @@ function Player:update(dt)
     self.moveTo = nil
   end
   
-  if self.state == STATE_DEAD then
-    
-  end
-  
   local x, y = self.body:getLinearVelocity( )
   if love.keyboard.isDown("right") then
-    if x < 200 then
-      self.body:applyForce(200, 0)
-    end
-
+    self.body:setLinearVelocity(SIDE_SPPED, y)
   elseif love.keyboard.isDown("left") then
-    if x > -400 then
-      self.body:applyForce(-200, 0)
-    end
+    self.body:setLinearVelocity(-SIDE_SPPED, y)
   end
   if love.keyboard.isDown("up") then
-    if self.onGround and y > -400 then
-      self.body:setLinearVelocity( x, -400)
+    if(self.onGround == true) then
+      self.onGround = false
+      self.isJumping = true
+      self.body:setLinearVelocity( x, -JUMP_SPEED)
     end
+    
   elseif love.keyboard.isDown("down") then
       self.body:applyForce(0, 1000)
   end
+
+  if not love.keyboard.isDown("up") and self.isJumping == true and y < 0 then
+    -- decrease jump speed
+    self.body:applyForce(0, JUMP_DECREASE)
+  end  
 end
 
 function Player:getX()
