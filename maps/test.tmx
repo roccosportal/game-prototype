@@ -1,87 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" backgroundcolor="#2ac2fa">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="32" tileheight="32" backgroundcolor="#115980">
  <tileset firstgid="1" name="platformer" tilewidth="32" tileheight="32">
   <image source="../gfx/platformer.png" width="416" height="384"/>
-  <tile id="4">
-   <objectgroup draworder="index">
-    <object x="0" y="0.25" width="31.8125" height="31.6875"/>
-   </objectgroup>
-  </tile>
   <tile id="55">
    <objectgroup draworder="index">
-    <object x="1.94289e-15" y="-0.181818" width="31.8182" height="32.1818"/>
+    <object x="0" y="0" width="31.875" height="31.875"/>
    </objectgroup>
   </tile>
   <tile id="56">
    <objectgroup draworder="index">
-    <object x="0.0909091" y="0.0909091" width="31.9091" height="31.7273"/>
+    <object x="0" y="-0.125" width="31.75" height="31.875"/>
+   </objectgroup>
+  </tile>
+  <tile id="57">
+   <objectgroup draworder="index">
+    <object x="0.125" y="0" width="31.625" height="31.75"/>
+   </objectgroup>
+  </tile>
+  <tile id="58">
+   <objectgroup draworder="index">
+    <object x="0.125" y="0.125" width="31.875" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="59">
+   <objectgroup draworder="index">
+    <object x="0" y="0.125" width="31.875" height="31.75"/>
    </objectgroup>
   </tile>
   <tile id="60">
    <objectgroup draworder="index">
-    <object x="0.0909091" y="0.0909091" width="6.90909" height="31.8182"/>
+    <object x="0" y="0.125" width="32.125" height="31.625"/>
    </objectgroup>
   </tile>
   <tile id="61">
    <objectgroup draworder="index">
-    <object x="0.0909091" y="0.0909091" width="31.9091" height="7.36364"/>
+    <object x="0" y="0" width="31.75" height="31.75"/>
    </objectgroup>
   </tile>
   <tile id="62">
    <objectgroup draworder="index">
-    <object x="24.0909" y="1.66533e-16" width="7.72727" height="31.9091"/>
+    <object x="0" y="0" width="31.875" height="31.875"/>
+   </objectgroup>
+  </tile>
+  <tile id="63">
+   <objectgroup draworder="index">
+    <object x="0" y="8.125" width="31.875" height="15.625"/>
+   </objectgroup>
+  </tile>
+  <tile id="64">
+   <objectgroup draworder="index">
+    <object x="-0.125" y="8.125" width="31.875" height="15.5"/>
+   </objectgroup>
+  </tile>
+  <tile id="65">
+   <objectgroup draworder="index">
+    <object x="0" y="8.125" width="31.875" height="15.75"/>
+   </objectgroup>
+  </tile>
+  <tile id="66">
+   <objectgroup draworder="index">
+    <object x="0" y="8.125" width="31.875" height="15.625"/>
+   </objectgroup>
+  </tile>
+  <tile id="67">
+   <objectgroup draworder="index">
+    <object x="0" y="0" width="31.875" height="31.875"/>
+   </objectgroup>
+  </tile>
+  <tile id="68">
+   <objectgroup draworder="index">
+    <object x="0" y="6.75">
+     <polygon points="0,0 7,-6.625 0.125,-6.875"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="69">
+   <objectgroup draworder="index">
+    <object x="25" y="0">
+     <polygon points="0,0 6.75,6.75 7,0.125"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="70">
+   <objectgroup draworder="index">
+    <object x="0.125" y="0.25">
+     <polygon points="0,0 31.5,31.5 0,31.75"/>
+    </object>
    </objectgroup>
   </tile>
   <tile id="71">
    <objectgroup draworder="index">
-    <object x="32" y="0.181818">
-     <polygon points="0,0 -31.9091,31.9091 0.0909091,31.8182"/>
+    <object x="31.75" y="0.125">
+     <polygon points="0,0 -31.5,31.75 0.125,31.625"/>
     </object>
    </objectgroup>
   </tile>
+  <tile id="149">
+   <objectgroup draworder="index">
+    <object x="0" y="23.5" width="32" height="1.375"/>
+   </objectgroup>
+  </tile>
  </tileset>
- <layer name="Tile Layer 1" width="100" height="100">
+ <layer name="Kachelebene 1" width="200" height="200">
   <data encoding="base64" compression="zlib">
-   eJzt2EEKAiEUgGE3naDL1KJaFd3/RDGBi4FMk8Ye9n3QqgmE3yGfKQHM49zwgRmV9vux4bf3DdfF2qXy/dLiOmIhPL3rocV4pR5a/Eapx2noKshu6fX/vHeDf1Y7VzFWT4/911dBttX7sZzLWu5d3MOsfdJj1/icM3K/2hzYs8e16GcOjCX3OCR7PILcwxwegx6xmAdj0SMWPWLRI5bSPbv7i3n0zPTaAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDiAV+SG1g=
+   eJzt21tu2zAQBVDtoZtxP5IGTtp0g9lvSzQEpoRIiTJtCu05AIFApuV8zDXNh96WZXn7Dxoc8W1nvy8brz8tY+sw308+mGlvPqKfv9vX4pp88C/qzUfKxvfifflaTx3uHY/kg5n25CPV//NnyznI77t8XhtNPjiDMh+p3t8//865yJmI7cjvsnjP1MrfaJF8cAaxzq/Lnyz8WOq5yC336W3xnumzXyv/l3xwBuU40DMu5Bo+MpY8bbxPPjiD8jt8Zj6u4X+RD87A+AF15fzj6Ly7Vysf10U+OIdbxo9bpPpPc/zWGtaRe8oHI90y/9gS13Jr61itNaw1rX1F+WC0e40feU+99/NvIR+Mtjb/2Dr7EfuvfffHMygvRSv758+/Vl7vIR+MluYA75XX4jnES6Nf7ls7g9Ky1afM4GWpz1nkg9FS7dT2wuM5xKeiX8xKPJ8Y257aT30+Olpr3Us+GG3P2ujzyrWYldo5lLX9v5fl7/Gg95xKeXY4kg9GG7nHsJah1m+yLWvzoJjN2jMo8sEo98zHiIz0kA9Gu3c+4vf9vXMiH4z2iHysjSV5vWttLeqy7HtGpCQfjPbIfMSxpLUGHOu8Z39dPhjt0fmo5aX1DFWU18BSey2uywejzc7HVjty3l4+GGV2/e/JR8/eoXww0uz632o9+4et5+XhiNn1/6gGR8yuW/ngzGbXrXxwZrPrVj44s9l1Kx8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcB6/AARMTMM=
   </data>
  </layer>
- <objectgroup name="Object Layer 1">
-  <properties>
-   <property name="collidable" value="true"/>
-   <property name="isSolid" value="true"/>
-  </properties>
-  <object gid="5" x="539.333" y="69.08"/>
-  <object gid="2" x="475" y="66.333"/>
-  <object gid="4" x="417" y="64.667"/>
-  <object gid="72" x="340" y="64"/>
- </objectgroup>
  <objectgroup name="dynamic">
-  <object x="201" y="138" width="18" height="19"/>
-  <object x="318" y="281" width="26" height="27"/>
-  <object x="322" y="247" width="24" height="26"/>
-  <object x="322" y="217" width="21" height="23"/>
-  <object x="930" y="379" width="43" height="38">
+  <object x="896" y="294" width="39" height="31">
    <properties>
     <property name="isPlayer" value="true"/>
    </properties>
   </object>
-  <object x="493" y="138" width="13" height="14"/>
-  <object x="729" y="452" width="27" height="56"/>
-  <object x="738" y="435" width="13" height="11"/>
-  <object x="321" y="747" width="41" height="52"/>
-  <object x="334" y="700.667" width="19" height="40"/>
- </objectgroup>
- <objectgroup name="killAreas">
-  <object x="608" y="501" width="26" height="15"/>
-  <object x="198.667" y="789.333" width="66.6667" height="8.66667"/>
+  <object x="1187.33" y="623.667" width="11.6667" height="47.6667"/>
+  <object x="695.5" y="148.5" width="6.5" height="42.5"/>
+  <object x="712" y="122.5" width="8.5" height="68.5"/>
+  <object x="730" y="96.5" width="9" height="95"/>
+  <object x="747" y="76" width="9.5" height="116"/>
+  <object x="766.5" y="63" width="10" height="128.5"/>
+  <object x="1018" y="138" width="10.25" height="21.5"/>
  </objectgroup>
  <objectgroup name="spikes">
-  <object gid="99" x="606" y="520"/>
-  <object gid="99" x="189.333" y="807.333"/>
-  <object gid="99" x="211.333" y="808"/>
-  <object gid="99" x="234.667" y="808.667"/>
+  <object gid="99" x="512.667" y="552.667"/>
+  <object gid="99" x="481.333" y="552.667"/>
+  <object gid="99" x="1023.33" y="208"/>
+  <object gid="99" x="1150.67" y="272"/>
+  <object gid="99" x="1055.33" y="400"/>
+  <object gid="99" x="1088.67" y="464"/>
+  <object gid="99" x="1184" y="336"/>
+  <object gid="99" x="1503.33" y="584"/>
+  <object gid="99" x="1471.92" y="584"/>
+  <object gid="99" x="1344.71" y="344.047" rotation="-179.83"/>
+  <object gid="99" x="1152.67" y="744"/>
+  <object gid="99" x="1120.67" y="744"/>
+  <object gid="99" x="1088.33" y="744"/>
+  <object gid="99" x="1056" y="744"/>
+  <object gid="88" x="768.667" y="456"/>
+  <object gid="99" x="926.333" y="560"/>
+  <object gid="99" x="928.667" y="712.333"/>
+  <object gid="99" x="1503.5" y="752"/>
+  <object gid="99" x="1408.5" y="752"/>
+  <object gid="99" x="608.151" y="120.153" rotation="-179.455"/>
+  <object gid="99" x="639.859" y="119.36" rotation="-180.504"/>
+  <object gid="99" x="192.5" y="200.5"/>
+  <object gid="99" x="288" y="552"/>
+  <object gid="99" x="583.753" y="94.743" rotation="-89.1229"/>
+  <object gid="99" x="583.809" y="63.1889" rotation="-89.3196"/>
+  <object gid="99" x="1439.11" y="343.364" rotation="-180.49"/>
+ </objectgroup>
+ <objectgroup name="killAreas">
+  <object x="1056" y="536.667" width="351.333" height="6.66667"/>
+  <object x="1312" y="825.333" width="319.333" height="6.33333"/>
+  <object x="1024.75" y="188" width="26" height="11"/>
+  <object x="1154" y="252.75" width="25.25" height="10.75"/>
+  <object x="1187.5" y="316" width="25.25" height="11.5"/>
+  <object x="1058" y="381" width="26" height="10.75"/>
+  <object x="1092" y="445" width="25" height="10.25"/>
+  <object x="1315" y="352.25" width="26.75" height="10"/>
+  <object x="1410.25" y="353.5" height="0.25"/>
+  <object x="1410" y="351.75" width="26.25" height="11"/>
+  <object x="1475.5" y="564.5" width="56.25" height="11"/>
+  <object x="1506.75" y="733.5" width="25" height="9.75"/>
+  <object x="1412" y="732.5" width="24.75" height="10.75"/>
+  <object x="1059.5" y="725" width="121" height="10.5"/>
+  <object x="932.25" y="692.5" width="25" height="11.5"/>
+  <object x="929.25" y="541.5" width="25.75" height="10"/>
+  <object x="579.75" y="128" width="56.25" height="10.25"/>
+  <object x="565.25" y="34" width="10.25" height="57"/>
+  <object x="196" y="181.75" width="25" height="10.5"/>
+  <object x="292" y="533.75" width="24.5" height="9.5"/>
+  <object x="485.25" y="534.25" width="55.75" height="9.75"/>
  </objectgroup>
  <objectgroup name="savePoints">
-  <object x="384" y="354" width="60" height="154"/>
+  <object x="128.667" y="480" width="31" height="31.6667"/>
+  <object x="993" y="32" width="30.6667" height="127.667"/>
+  <object x="1443" y="351.667" width="28.3333" height="128"/>
+  <object x="1209" y="576.5" width="37.5" height="95"/>
+  <object x="352" y="32.5" width="31.5" height="95"/>
  </objectgroup>
 </map>
