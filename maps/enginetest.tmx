@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="platformer" tilewidth="32" tileheight="32">
+  <image source="../gfx/platformer.png" width="416" height="384"/>
+  <tile id="61">
+   <objectgroup draworder="index">
+    <object x="0" y="0" width="32" height="31.25"/>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0aENAEAIBEEqo8vvF4tBPyEzyZqzFwEAAABsl0Ov1Xf+8AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADADQXWgASo
+  </data>
+ </layer>
+ <objectgroup name="killAreas">
+  <object x="450" y="346" width="93" height="5">
+   <properties>
+    <property name="isCollidable" value="false"/>
+   </properties>
+  </object>
+  <object x="574.479" y="306" width="31.25" height="13.1458"/>
+ </objectgroup>
+ <objectgroup name="dynamic">
+  <object x="507" y="276" width="16" height="38"/>
+  <object x="585.75" y="282.5" width="10" height="19.25"/>
+  <object x="394" y="278.5" width="18.75" height="33.75">
+   <properties>
+    <property name="isPlayer" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Object Layer 3">
+  <object gid="99" x="573.917" y="327.896"/>
+ </objectgroup>
+</map>
