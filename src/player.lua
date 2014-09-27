@@ -56,9 +56,15 @@ function Player:update(dt)
   
   local x, y = self.body:getLinearVelocity( )
   if love.keyboard.isDown("right") then
-    self.body:setLinearVelocity(SIDE_SPPED, y)
+    if x < 0 then
+      self.body:setLinearVelocity(0, y)
+    end
+    self.body:applyForce(SIDE_SPPED, 0)
   elseif love.keyboard.isDown("left") then
-    self.body:setLinearVelocity(-SIDE_SPPED, y)
+    if x > 0 then
+      self.body:setLinearVelocity(0, y)
+    end
+    self.body:applyForce(-SIDE_SPPED, 0)
   end
   if love.keyboard.isDown("up") then
     if(self.onGround == true) then
