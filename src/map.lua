@@ -47,7 +47,17 @@ end
 function Map:initKillAreas()
   if self.mapSTI.layers["killAreas"] then
     
+    
+    
     local function setKillArea(area)
+        local function contactFilter(fixture)
+          -- nothing but player hits me
+          if game.player.fixture ~= fixture then
+            return false
+          end
+          return true
+        end
+        
         area.body = love.physics.newBody(self.world, area.x + (area.width / 2), area.y + (area.height / 2))
         area.shape = love.physics.newRectangleShape(0, 0, area.width, area.height)
         area.fixture = love.physics.newFixture(area.body, area.shape, 5)
@@ -58,6 +68,10 @@ function Map:initKillAreas()
         area.y = nil
         area.width = nil
         area.height = nil
+        
+        if area.properties.isCollidable ~= nil or area.properties.isCollidable then 
+          game.contactEventManager:register(area.fixture, nil, nil, nil, nil, contactFilter)
+        end
     end
 
     self.killAreas = self.mapSTI.layers["killAreas"].objects
