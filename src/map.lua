@@ -48,14 +48,6 @@ function Map:initKillAreas()
   if self.mapSTI.layers["killAreas"] then
     
     local function setKillArea(area)
-        local function contactFilter(fixture)
-          if game.player.fixture == fixture then
-            game.player:kill()
-            return false -- no hit, no sound visualisation
-          end
-          return nil -- let somebody else decide if I am hit
-        end
-      
         area.body = love.physics.newBody(self.world, area.x + (area.width / 2), area.y + (area.height / 2))
         area.shape = love.physics.newRectangleShape(0, 0, area.width, area.height)
         area.fixture = love.physics.newFixture(area.body, area.shape, 5)
@@ -66,8 +58,6 @@ function Map:initKillAreas()
         area.y = nil
         area.width = nil
         area.height = nil
-        
-        game.contactEventManager:register(area.fixture, nil, nil, nil, nil, contactFilter)
     end
 
     self.killAreas = self.mapSTI.layers["killAreas"].objects
@@ -127,6 +117,9 @@ function Map:draw()
     for _,object in pairs(self.dynamics.objects) do
           love.graphics.polygon("fill", object.body:getWorldPoints(object.shape:getPoints()))
     end
+    -- for _,area in pairs(self.killAreas) do
+    --       love.graphics.polygon("fill", area.body:getWorldPoints(area.shape:getPoints()))
+    -- end
 end
 
 function Map:resize()

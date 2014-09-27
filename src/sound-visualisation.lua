@@ -79,6 +79,18 @@ end
 game.soundVisualisations = {}
 game.soundVisualisations.list = {}
 
+function game.soundVisualisations.collision(contact, a, b)
+    local x,y = contact:getPositions()
+    local aX,aY = a:getBody():getLinearVelocity()
+    local bX,bY = b:getBody():getLinearVelocity()
+
+
+    local strength = math.abs(aX) + math.abs(aY) + math.abs(bX) + math.abs(bY)
+    if strength > 200 then
+      game.soundVisualisations.new(x,y,strength)
+    end
+end
+
 
 function game.soundVisualisations.new(x,y, strength)
     -- table.insert(game.soundVisualisations.list, SoundVisualisation.create(x,y))

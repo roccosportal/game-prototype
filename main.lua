@@ -31,6 +31,7 @@ function love.load()
 
 		local px, py = game.map:getPlayerStartingPosition()
 		game.camera:setCenter(px, py)
+		-- game.camera.rotation = 0.05
 		game.player = Player.create(px, py, world)
 		
 		local w, h = game.map:getWorldSize()
@@ -106,17 +107,15 @@ function love.resize(w, h)
     game.map:resize(w, h)
 end
 
-function beginContact(a, b, coll)
-
-		local x,y = coll:getPositions()
-		local aX,aY = a:getBody():getLinearVelocity()
-		local bX,bY = b:getBody():getLinearVelocity()
-
-
-		strength = math.abs(aX) + math.abs(aY) + math.abs(bX) + math.abs(bY)
-		if strength > 200 then
-			game.soundVisualisations.new(x,y,strength)
+function beginContact(a, b, contact)
+	  -- if player do nothing
+		if a ~= game.player.fixture and b ~= game.player.fixture then
+			-- forward collision to sound visualisations
+			game.soundVisualisations.collision(contact, a, b)
 		end
+
+		
+		
 end
 
 function logline(message)

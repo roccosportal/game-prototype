@@ -26,12 +26,22 @@ function Player.create(x,y, world)
   
   
   local function beginContact(fixture, contact)
+      for _, area in pairs(game.map.killAreas) do
+        if area.fixture == fixture then
+            self:kill()
+            return nil
+        end
+      end 
+      
       local x,y = contact:getNormal()
       if y < -0.8 and y > -1.2 then
         self.groundFixture = fixture
         self.onGround = true
         self.isJumping = false
       end
+    
+      -- forward collision to sound visualisations
+      game.soundVisualisations.collision(contact, self.fixture, fixture)
   end
 
   local function endContact(fixture, contact)
