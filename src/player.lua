@@ -2,7 +2,6 @@ Player = {}
 Player.__index = Player
 
 local RADIUS = 10
-
 local JUMP_DECREASE = 400
 local JUMP_SPEED = 400
 local SIDE_SPPED = 150
