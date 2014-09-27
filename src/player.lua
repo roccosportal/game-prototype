@@ -26,12 +26,22 @@ function Player.create(x,y, world)
   
   
   local function beginContact(fixture, contact)
+      for _, area in pairs(game.map.killAreas) do
+        if area.fixture == fixture then
+            self:kill()
+            return nil
+        end
+      end 
+      
       local x,y = contact:getNormal()
       if y < -0.8 and y > -1.2 then
         self.groundFixture = fixture
         self.onGround = true
         self.isJumping = false
       end
+    
+      -- forward collision to sound visualisations
+      game.soundVisualisations.collision(contact, self.fixture, fixture)
   end
 
   local function endContact(fixture, contact)
@@ -56,9 +66,15 @@ function Player:update(dt)
   
   local x, y = self.body:getLinearVelocity( )
   if love.keyboard.isDown("right") then
-    self.body:setLinearVelocity(SIDE_SPPED, y)
+    if x < 0 then
+      self.body:setLinearVelocity(0, y)
+    end
+    self.body:applyForce(SIDE_SPPED, 0)
   elseif love.keyboard.isDown("left") then
-    self.body:setLinearVelocity(-SIDE_SPPED, y)
+    if x > 0 then
+      self.body:setLinearVelocity(0, y)
+    end
+    self.body:applyForce(-SIDE_SPPED, 0)
   end
   if love.keyboard.isDown("up") then
     if(self.onGround == true) then
