@@ -34,7 +34,7 @@ function Player.create(x,y, world)
       end 
       
       local x,y = contact:getNormal()
-      if y < -0.8 and y > -1.2 then
+      if y < -0.6 and y > -1.2 then
         self.groundFixture = fixture
         self.onGround = true
         self.isJumping = false
@@ -65,6 +65,19 @@ function Player:update(dt)
   end
   
   local x, y = self.body:getLinearVelocity( )
+  
+  if love.keyboard.isDown("up") then
+    if(self.onGround == true) then
+      self.onGround = false
+      self.isJumping = true
+      self.body:setLinearVelocity( x, -JUMP_SPEED)
+      y = -JUMP_SPEED
+    end
+    
+  elseif love.keyboard.isDown("down") then
+      self.body:applyForce(0, 1000)
+  end
+
   if love.keyboard.isDown("right") then
     if x < 0 then
       self.body:setLinearVelocity(0, y)
@@ -76,16 +89,9 @@ function Player:update(dt)
     end
     self.body:applyForce(-SIDE_SPPED, 0)
   end
-  if love.keyboard.isDown("up") then
-    if(self.onGround == true) then
-      self.onGround = false
-      self.isJumping = true
-      self.body:setLinearVelocity( x, -JUMP_SPEED)
-    end
-    
-  elseif love.keyboard.isDown("down") then
-      self.body:applyForce(0, 1000)
-  end
+
+
+
 
   if not love.keyboard.isDown("up") and self.isJumping == true and y < 0 then
     -- decrease jump speed
