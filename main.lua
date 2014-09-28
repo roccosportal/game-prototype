@@ -6,6 +6,10 @@ require("src/contact-event-manager")
 require("src/overlays/damage")
 game.camera = require("src/camera")
 
+function string.starts(String,Start)
+   return string.sub(String,1,string.len(Start))==Start
+end
+
 
 function love.load()	
 		-- love.window.setFullscreen(true)

@@ -11,6 +11,7 @@ function Map.create(path, world)
     self.player = {x = 0, y = 0}
     self.mapSTI = STI.new(path)
 
+    self:initRopes()
 		self:initDynamicLayer()
     self:initKillAreas()
     self:initSavePoints()
@@ -119,6 +120,56 @@ function Map:initSavePoints()
   end
 end
 
+
+function Map:initRopes()
+  self.ropes = {}
+  local removeLayers = {}
+  for _, layer in ipairs(self.mapSTI.layers) do
+      if string.starts(layer.name, "rope") then
+        local rope = {
+          chains = {},
+          joints = {}
+        }
+        
+        local isFirst = true
+        local lastChain = {}
+        local mode = "static"
+        for __, ropeChain in pairs(layer.objects) do
+            	local chain = {}              
+            	chain.body = love.physics.newBody( self.world, ropeChain.x, ropeChain.y, mode)
+            	chain.shape = love.physics.newCircleShape( 2 )
+            	chain.fixture = love.physics.newFixture( chain.body, chain.shape )
+              table.insert(rope.chains, chain)
+              
+              if not isFirst then
+                local a = math.abs(chain.body:getY() - lastChain.body:getY())
+                local b = math.abs(chain.body:getX() - lastChain.body:getX())
+                local disLength =  math.sqrt(math.pow(a,2) + math.pow(b, 2))
+                                
+                local joint = love.physics.newRopeJoint( lastChain.body, chain.body, lastChain.body:getX(), lastChain.body:getY(), chain.body:getX(), chain.body:getY(), disLength )
+                
+                table.insert(rope.joints, joint)
+              else
+                isFirst = false
+                mode = "dynamic"
+              end
+              lastChain = chain
+              
+        end
+        table.insert(self.ropes, rope)
+        table.insert(removeLayers, _)
+      end 
+  end
+  
+  for _, i in pairs(removeLayers) do
+    --logline(i)
+    self.mapSTI:removeLayer(i)
+  end
+end
+
+
+
+
 function Map:update(dt)
     self.mapSTI:update(dt)
     
@@ -130,6 +181,19 @@ function Map:draw()
     love.graphics.setColor(50, 50, 50)
     for _,object in pairs(self.dynamics.objects) do
           love.graphics.polygon("fill", object.body:getWorldPoints(object.shape:getPoints()))
+    end
+    
+    love.graphics.setColor( 0,0,0 )
+    for _,rope in pairs(self.ropes) do
+          local lastChain = nil
+          for __, chain in pairs(rope.chains) do
+            if lastChain ~= nil then
+              local points = {}
+              
+              love.graphics.line(lastChain.body:getX(), lastChain.body:getY(), chain.body:getX(), chain.body:getY())
+            end
+            lastChain = chain
+          end
     end
     -- for _,area in pairs(self.killAreas) do
     --       love.graphics.polygon("fill", area.body:getWorldPoints(area.shape:getPoints()))

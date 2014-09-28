@@ -10,7 +10,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt0aENAEAIBEEqo8vvF4tBPyEzyZqzFwEAAABsl0Ov1Xf+8AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADADQXWgASo
+   eJzt0TEKADAIA0Bf5i/73+Lm0q6C3EGWTIFEAAAAJacHAHzkI6el98zwAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAOF/9FBOY=
   </data>
  </layer>
  <objectgroup name="killAreas">
@@ -32,5 +32,49 @@
  </objectgroup>
  <objectgroup name="Object Layer 3">
   <object gid="99" x="573.917" y="327.896"/>
+ </objectgroup>
+ <objectgroup name="rope01">
+  <object x="324.939" y="227.636" width="2.33333" height="2.66667">
+   <ellipse/>
+  </object>
+  <object x="324.515" y="232.697" width="2.66667" height="3.66667">
+   <ellipse/>
+  </object>
+  <object x="324.758" y="238.667" width="2.33333" height="2.66667">
+   <ellipse/>
+  </object>
+  <object x="324.394" y="242.818" width="2" height="3">
+   <ellipse/>
+  </object>
+  <object x="325.455" y="249.273" width="0.909091" height="1.45455">
+   <ellipse/>
+  </object>
+  <object x="325.091" y="253.818" width="1.27273" height="1.09091">
+   <ellipse/>
+  </object>
+  <object x="324.909" y="257.636" width="1.27273" height="1.81818">
+   <ellipse/>
+  </object>
+  <object x="324.909" y="262.182" width="1.27273" height="1.27273">
+   <ellipse/>
+  </object>
+  <object x="325.091" y="265.818" width="0.909091" height="1.63636">
+   <ellipse/>
+  </object>
+  <object x="325.091" y="270" width="0.909091" height="1.27273">
+   <ellipse/>
+  </object>
+  <object x="325.091" y="274.364" width="0.909091" height="0.909091">
+   <ellipse/>
+  </object>
+  <object x="325.636" y="277.818" width="1.27273" height="1.09091">
+   <ellipse/>
+  </object>
+  <object x="325.455" y="281.091" width="1.09091" height="0.909091">
+   <ellipse/>
+  </object>
+  <object x="326" y="284" width="1.09091" height="1.27273">
+   <ellipse/>
+  </object>
  </objectgroup>
 </map>
