@@ -103,19 +103,20 @@
  </tileset>
  <layer name="Kachelebene 1" width="200" height="200">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="dynamic">
-  <properties>
-   <property name="isPlayer" value="true"/>
-  </properties>
-  <object x="0" y="33.3333" width="29.3333" height="29.3333"/>
   <object x="1776.67" y="936.333" width="11.3333" height="63"/>
   <object x="1828.67" y="936.333" width="11.6667" height="63"/>
   <object x="1874.33" y="936.333" width="12.3333" height="63.3333"/>
-  <object x="1750.67" y="833.667" width="9.33333" height="62"/>
-  <object x="1709.33" y="669" width="21.3333" height="34.3333"/>
+  <object x="32" y="32.3333" width="33.6667" height="31.3333">
+   <properties>
+    <property name="isPlayer" value="true"/>
+   </properties>
+  </object>
+  <object x="1750" y="846" width="8" height="49"/>
+  <object x="1875" y="1102" width="7" height="48"/>
  </objectgroup>
  <objectgroup name="spikes">
   <object gid="99" x="224.667" y="168"/>
@@ -125,7 +126,6 @@
   <object gid="99" x="1055.67" y="392"/>
   <object gid="99" x="1248" y="424"/>
   <object gid="99" x="447.667" y="680"/>
-  <object x="451" y="661.333" width="25.6667" height="10.3333"/>
   <object gid="99" x="1608" y="392"/>
   <object gid="99" x="1528.33" y="392"/>
   <object gid="99" x="1408.21" y="311.876" rotation="-180.444"/>
@@ -133,13 +133,11 @@
   <object gid="99" x="1376" y="520"/>
   <object gid="99" x="1408.67" y="520"/>
   <object gid="99" x="1440.67" y="520"/>
-  <object gid="99" x="1671" y="392"/>
-  <object x="1674.33" y="373.667" width="25" height="9.66667"/>
+  <object gid="99" x="1671.67" y="392"/>
   <object gid="99" x="1760.33" y="712"/>
   <object gid="99" x="1728.67" y="712"/>
   <object gid="99" x="1696.67" y="712"/>
-  <object gid="99" x="1632" y="720"/>
-  <object x="1634" y="699.667" width="27" height="12.3333"/>
+  <object gid="99" x="1631" y="720"/>
   <object gid="99" x="1632" y="816"/>
   <object gid="99" x="1631.67" y="904"/>
   <object gid="99" x="1760.33" y="1008"/>
@@ -147,6 +145,7 @@
   <object gid="99" x="1824.33" y="1008"/>
   <object gid="99" x="1857.33" y="1008"/>
   <object gid="99" x="1888.33" y="1008"/>
+  <object gid="99" x="1247" y="240"/>
  </objectgroup>
  <objectgroup name="killAreas">
   <object x="67.3333" y="597.667" width="25" height="9.66667"/>
@@ -166,12 +165,19 @@
   <object x="1635" y="796.667" width="26" height="10.6667"/>
   <object x="1635" y="884.667" width="25.6667" height="10.6667"/>
   <object x="1763.67" y="989" width="152.667" height="10.3333"/>
-  <object x="1824" y="1147.33" width="223.333" height="4"/>
+  <object x="228" y="148" width="25" height="11.5"/>
+  <object x="450.5" y="660" width="25.5" height="11"/>
+  <object x="1674.67" y="372" width="25.3333" height="10.6667"/>
+  <object x="1251" y="219" width="25" height="12"/>
+  <object x="1824" y="1123" width="224" height="28"/>
+  <object x="1634" y="700" width="26" height="9"/>
+  <object x="929" y="278" width="381" height="7"/>
  </objectgroup>
  <objectgroup name="savePoints">
-  <object x="227.667" y="149" width="25.3333" height="10.3333"/>
   <object x="606.667" y="32" width="32.6667" height="63.3333"/>
   <object x="1590" y="416" width="38" height="95.3333"/>
   <object x="1696" y="832" width="32" height="63.3333"/>
+  <object x="1377" y="95" width="34" height="32"/>
+  <object x="1296" y="320" width="31" height="95"/>
  </objectgroup>
 </map>
