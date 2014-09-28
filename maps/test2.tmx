@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="32" tileheight="32" backgroundcolor="#115980">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <tileset firstgid="1" name="platformer" tilewidth="32" tileheight="32">
   <image source="../gfx/platformer.png" width="416" height="384"/>
   <tile id="55">
@@ -101,27 +101,97 @@
    </objectgroup>
   </tile>
  </tileset>
+ <tileset firstgid="157" name="blackandwhite" tilewidth="32" tileheight="32">
+  <image source="../gfx/Tiles-blackandwhite/blackandwhite.png" width="160" height="128"/>
+  <tile id="0">
+   <objectgroup draworder="index">
+    <object x="0" y="0">
+     <polygon points="0,0 31.8182,31.8182 0.0909091,31.8182"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="1">
+   <objectgroup draworder="index">
+    <object x="31.9091" y="0">
+     <polygon points="0,0 -31.8182,31.8182 0.181818,32.0909"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="2">
+   <objectgroup draworder="index">
+    <object x="32" y="0.0909091">
+     <polygon points="0,0 -31.9091,31.7273 -31.9091,-0.0909091"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="3">
+   <objectgroup draworder="index">
+    <object x="0" y="0">
+     <polygon points="0,0 31.8182,31.9091 32.1818,0.0909091"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="9">
+   <objectgroup draworder="index">
+    <object x="-0.0909091" y="0" width="32.0909" height="31.9091"/>
+   </objectgroup>
+  </tile>
+  <tile id="10">
+   <objectgroup draworder="index">
+    <object x="0.0909091" y="0" width="31.8182" height="31.9091"/>
+   </objectgroup>
+  </tile>
+  <tile id="11">
+   <objectgroup draworder="index">
+    <object x="-0.0909091" y="0.0909091" width="32.0909" height="31.7273"/>
+   </objectgroup>
+  </tile>
+  <tile id="12">
+   <objectgroup draworder="index">
+    <object x="-0.0909091" y="0.0909091" width="32" height="31.9091"/>
+   </objectgroup>
+  </tile>
+  <tile id="13">
+   <objectgroup draworder="index">
+    <object x="0" y="0.0909091" width="32" height="31.9091"/>
+   </objectgroup>
+  </tile>
+  <tile id="14">
+   <objectgroup draworder="index">
+    <object x="0" y="-0.0909091" width="32.3636" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="15">
+   <objectgroup draworder="index">
+    <object x="0" y="0.0909091" width="32" height="31.8182"/>
+   </objectgroup>
+  </tile>
+  <tile id="16">
+   <objectgroup draworder="index">
+    <object x="0" y="0" width="31.9091" height="32.0909"/>
+   </objectgroup>
+  </tile>
+ </tileset>
  <layer name="Kachelebene 1" width="200" height="200">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="dynamic">
-  <object x="1776.67" y="936.333" width="11.3333" height="63"/>
-  <object x="1828.67" y="936.333" width="11.6667" height="63"/>
-  <object x="1874.33" y="936.333" width="12.3333" height="63.3333"/>
+  <object x="1786.67" y="926.833" width="11.3333" height="63"/>
+  <object x="1841.67" y="927.333" width="11.6667" height="63"/>
+  <object x="1903.33" y="926.833" width="12.3333" height="63.3333"/>
   <object x="32" y="32.3333" width="33.6667" height="31.3333">
    <properties>
     <property name="isPlayer" value="true"/>
    </properties>
   </object>
-  <object x="1750" y="846" width="8" height="49"/>
   <object x="1875" y="1102" width="7" height="48"/>
  </objectgroup>
  <objectgroup name="spikes">
   <object gid="99" x="224.667" y="168"/>
   <object gid="99" x="63.6667" y="616"/>
-  <object gid="99" x="512.667" y="368.333"/>
+  <object gid="99" x="512.667" y="360.333"/>
   <object gid="99" x="959" y="424"/>
   <object gid="99" x="1055.67" y="392"/>
   <object gid="99" x="1248" y="424"/>
@@ -137,22 +207,22 @@
   <object gid="99" x="1760.33" y="712"/>
   <object gid="99" x="1728.67" y="712"/>
   <object gid="99" x="1696.67" y="712"/>
-  <object gid="99" x="1631" y="720"/>
-  <object gid="99" x="1632" y="816"/>
+  <object gid="99" x="1631.5" y="712"/>
+  <object gid="99" x="1632" y="808.5"/>
   <object gid="99" x="1631.67" y="904"/>
-  <object gid="99" x="1760.33" y="1008"/>
-  <object gid="99" x="1792.33" y="1008"/>
-  <object gid="99" x="1824.33" y="1008"/>
-  <object gid="99" x="1857.33" y="1008"/>
-  <object gid="99" x="1888.33" y="1008"/>
-  <object gid="99" x="1247" y="240"/>
+  <object gid="99" x="1759.83" y="1000"/>
+  <object gid="99" x="1792.33" y="1000"/>
+  <object gid="99" x="1824.33" y="1000"/>
+  <object gid="99" x="1856.33" y="1000"/>
+  <object gid="99" x="1887.83" y="1000"/>
+  <object gid="99" x="1248.5" y="232"/>
  </objectgroup>
  <objectgroup name="killAreas">
   <object x="67.3333" y="597.667" width="25" height="9.66667"/>
   <object x="160" y="476.667" width="95.3333" height="3"/>
   <object x="128" y="348" width="63.6667" height="3"/>
   <object x="256" y="348" width="63.6667" height="3.33333"/>
-  <object x="517" y="350.333" width="24.3333" height="9.33333"/>
+  <object x="516.5" y="340.833" width="24.3333" height="9.33333"/>
   <object x="1059.67" y="372" width="24.6667" height="11.3333"/>
   <object x="962.667" y="404" width="25" height="11.3333"/>
   <object x="1252" y="405.667" width="24.6667" height="9.66667"/>
@@ -162,15 +232,15 @@
   <object x="1379.33" y="320.667" width="57" height="8.66667"/>
   <object x="1378.33" y="502" width="91" height="9.33333"/>
   <object x="1700.33" y="694" width="88.6667" height="9.33333"/>
-  <object x="1635" y="796.667" width="26" height="10.6667"/>
+  <object x="1635" y="788.667" width="26" height="10.6667"/>
   <object x="1635" y="884.667" width="25.6667" height="10.6667"/>
-  <object x="1763.67" y="989" width="152.667" height="10.3333"/>
+  <object x="1764.17" y="980" width="152.667" height="10.3333"/>
   <object x="228" y="148" width="25" height="11.5"/>
   <object x="450.5" y="660" width="25.5" height="11"/>
   <object x="1674.67" y="372" width="25.3333" height="10.6667"/>
-  <object x="1251" y="219" width="25" height="12"/>
+  <object x="1252" y="211" width="25" height="12"/>
   <object x="1824" y="1123" width="224" height="28"/>
-  <object x="1634" y="700" width="26" height="9"/>
+  <object x="1634.5" y="693" width="26" height="9"/>
   <object x="929" y="278" width="381" height="7"/>
  </objectgroup>
  <objectgroup name="savePoints">

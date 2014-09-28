@@ -189,79 +189,66 @@
  </tileset>
  <layer name="Kachelebene 1" width="200" height="200" opacity="0.99">
   <data encoding="base64" compression="zlib">
-   eJzt21tu4yAABVD20PU3f2mmTTPTJU6RgoQQNvgR2U7OkaymNib94BbzcAghfK1wJGvUldcHW/ruLPfWuH6dUFeP64p1wVxz2vTp9/gszskHz2hqmz5V7ovn4jPRnwn19PRHsLWefMT2f7sf5X2XMC0XveSDPSjzEdv7+/1zykXPfb3yrJXPaDn5YA/ydn65/4zPSufQnmO6zTjy+anv+/fUyAd7UPYDU/qF1Ibn9CWt8bx8sAexjX4Wv/daOx+x/zpn12FrS/qPjzB93irRf3AE5fhjzTWMMWP5iH9Hyp41d7a0pP9YIvUPY3NYc+uEtSwZf7Tkc7lD81jl97eMrSvKB2t7VP9x6qzLnhT2rDb+aO39yMvX/vfne1DyPqNWNl+Hb60ZtsgHj/A+cD7fh3gZKZfKDu1BGdMqU2ZwKJORfPAotTFClNrvtSiXZ+UU6nrafizz9/f413H8hPF5L/lgC0N7QM4j16La+t+tuOcjTNufIh88k7FnspbaOCiti8SM1d5BgaNZkpEp5IOjKscsjyAfHF35bkltLiqNU6bO98oHzyAfn9fG2mU7782IfPCMavPKSZmfc1Yuz1nsc+SDVzPnfRR4Fb3rh2ntEF5N79ohAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAc3X9bTs/C
+   eJzt2N0KgjAYgGHv/yLsMPrxHlNY0MHconL6teeBD5VCdvLC5jCUXc3mQ0z3vRfQidveC+Aj+mhDHzHpow19xKSPNvQRkz7a0EdM+mhDHzHpow19xNRLH+M80zyX9Dyl6zndfzPPd5boI6Ye+hjT9bTjGvQR07/3cYQ2FvqI6Z/7OEobC33EldtL5/blr/vs2u+5/+T26e+8p6R0fliU2hiH+tniVwNHU2sDelXaN2qD3q31oQ1Y78M5GfQBNb4jAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADA9h58t4/H
   </data>
  </layer>
  <objectgroup name="dynamic">
-  <object x="896" y="294" width="39" height="31">
+  <object x="264.667" y="40.6667" width="30.6667" height="27.3333">
    <properties>
     <property name="isPlayer" value="true"/>
    </properties>
   </object>
-  <object x="1187.33" y="623.667" width="11.6667" height="47.6667"/>
-  <object x="695.5" y="148.5" width="6.5" height="42.5"/>
-  <object x="712" y="122.5" width="8.5" height="68.5"/>
-  <object x="730" y="96.5" width="9" height="95"/>
-  <object x="747" y="76" width="9.5" height="116"/>
-  <object x="766.5" y="63" width="10" height="128.5"/>
-  <object x="1018" y="138" width="10.25" height="21.5"/>
+  <object x="358.667" y="320" width="12" height="63.3333"/>
+  <object x="585.333" y="296.667" width="12" height="86.6667"/>
+  <object x="841.333" y="253.333" width="15.3333" height="130"/>
+  <object x="1089.33" y="187.333" width="20.6667" height="196"/>
+  <object x="1410.67" y="36.6667" width="19.3333" height="346"/>
+  <object x="2162" y="197.333" width="10.6667" height="58"/>
+  <object x="2224" y="198.667" width="10" height="56.6667"/>
+  <object x="2452" y="195.333" width="8.66667" height="60"/>
+  <object x="2496" y="196.667" width="10" height="58"/>
+  <object x="2536.67" y="196.667" width="10.6667" height="58.6667"/>
+  <object x="2571.33" y="197.333" width="12" height="58"/>
+  <object x="2609.33" y="197.333" width="11.3333" height="57.3333"/>
+  <object x="2640.67" y="197.333" width="12" height="57.3333"/>
+  <object x="2668" y="197.333" width="12" height="58.6667"/>
+  <object x="2695.33" y="198.667" width="12" height="56"/>
+  <object x="2720.67" y="198.667" width="10.6667" height="56"/>
+  <object x="2747.33" y="199.333" width="12" height="55.3333"/>
+  <object x="2776.67" y="200" width="11.3333" height="55.3333"/>
+  <object x="2804" y="201.333" width="10" height="53.3333"/>
+  <object x="2830" y="202" width="11.3333" height="53.3333"/>
+  <object x="2868.67" y="326.667" width="8.66667" height="56"/>
+  <object x="2845.33" y="326" width="9.33333" height="56.6667"/>
+  <object x="2818.67" y="326.667" width="10" height="56"/>
+  <object x="2791.33" y="328" width="9.33333" height="54.6667"/>
+  <object x="2754.67" y="329.333" width="9.33333" height="54"/>
+  <object x="2713.33" y="329.333" width="10" height="53.3333"/>
+  <object x="2683.33" y="328" width="9.33333" height="55.3333"/>
+  <object x="2651.33" y="328.667" width="10.6667" height="54"/>
+  <object x="2624.67" y="329.333" width="10" height="54"/>
+  <object x="2593.33" y="329.333" width="10" height="54"/>
+  <object x="2556" y="329.333" width="9.33333" height="53.3333"/>
+  <object x="2516" y="328.667" width="12.6667" height="54.6667"/>
+  <object x="2478.67" y="329.333" width="12.6667" height="53.3333"/>
+  <object x="2440.67" y="330.667" width="11.3333" height="52"/>
+  <object x="2410" y="330.667" width="10" height="52.6667"/>
+  <object x="2380" y="330" width="8.66667" height="52.6667"/>
+  <object x="2350.67" y="330.667" width="8.66667" height="52.6667"/>
+  <object x="2320.67" y="328.667" width="9.33333" height="54"/>
+  <object x="2294.67" y="328.667" width="11.3333" height="54"/>
+  <object x="2890" y="328" width="10" height="54.6667"/>
+  <object x="2915.33" y="328" width="10.6667" height="54.6667"/>
  </objectgroup>
- <objectgroup name="spikes">
-  <object gid="99" x="512.667" y="552.667"/>
-  <object gid="99" x="481.333" y="552.667"/>
-  <object gid="99" x="1024" y="200"/>
-  <object gid="99" x="1151.34" y="264"/>
-  <object gid="99" x="1055.33" y="392.667"/>
-  <object gid="99" x="1089.34" y="456"/>
-  <object gid="99" x="1184.67" y="328.667"/>
-  <object gid="99" x="1503.33" y="584"/>
-  <object gid="99" x="1471.92" y="584"/>
-  <object gid="99" x="1344.71" y="344.047" rotation="-179.83"/>
-  <object gid="99" x="1152.67" y="744"/>
-  <object gid="99" x="1120.67" y="744"/>
-  <object gid="99" x="1088.33" y="744"/>
-  <object gid="99" x="1056" y="744"/>
-  <object gid="88" x="768" y="448"/>
-  <object gid="99" x="928.333" y="552.667"/>
-  <object gid="99" x="928.667" y="712.333"/>
-  <object gid="99" x="1504.17" y="744"/>
-  <object gid="99" x="1407.17" y="744"/>
-  <object gid="99" x="608.151" y="120.153" rotation="-179.455"/>
-  <object gid="99" x="639.859" y="119.36" rotation="-180.504"/>
-  <object gid="99" x="192.5" y="200.5"/>
-  <object gid="99" x="288" y="552"/>
-  <object gid="99" x="583.753" y="94.743" rotation="-89.1229"/>
-  <object gid="99" x="583.809" y="63.1889" rotation="-89.3196"/>
-  <object gid="99" x="1439.11" y="343.364" rotation="-180.49"/>
- </objectgroup>
+ <objectgroup name="spikes"/>
  <objectgroup name="killAreas">
-  <object x="1056" y="536.667" width="351.333" height="6.66667"/>
-  <object x="1312" y="825.333" width="319.333" height="6.33333"/>
-  <object x="1024.75" y="180" width="26" height="11"/>
-  <object x="1154" y="242.75" width="25.25" height="10.75"/>
-  <object x="1188.17" y="308" width="25.25" height="11.5"/>
-  <object x="1058" y="372.333" width="26" height="10.75"/>
-  <object x="1092.67" y="435.667" width="25" height="10.25"/>
-  <object x="1315" y="352.25" width="26.75" height="10"/>
-  <object x="1410.25" y="353.5" height="0.25"/>
-  <object x="1410" y="351.75" width="26.25" height="11"/>
-  <object x="1475.5" y="564.5" width="56.25" height="11"/>
-  <object x="1507.42" y="724.167" width="25" height="9.75"/>
-  <object x="1410.67" y="723.833" width="24.75" height="10.75"/>
-  <object x="1059.5" y="725" width="121" height="10.5"/>
-  <object x="932.25" y="692.5" width="25" height="11.5"/>
-  <object x="931.25" y="531.5" width="25.75" height="10"/>
-  <object x="579.75" y="128" width="56.25" height="10.25"/>
-  <object x="565.25" y="34" width="10.25" height="57"/>
-  <object x="196" y="181.75" width="25" height="10.5"/>
-  <object x="292" y="533.75" width="24.5" height="9.5"/>
-  <object x="485.25" y="534.25" width="55.75" height="9.75"/>
+  <object x="1439.33" y="406.667" width="320" height="9.33333"/>
+  <object x="2175.33" y="280.667" width="32" height="8"/>
+  <object x="2239.33" y="280" width="32.6667" height="10"/>
+  <object x="1120" y="406.667" width="128" height="11.3333"/>
+  <object x="864" y="404.667" width="95.3333" height="11.3333"/>
+  <object x="608" y="405.333" width="63.3333" height="12"/>
+  <object x="384" y="406.667" width="32" height="8.66667"/>
  </objectgroup>
- <objectgroup name="savePoints">
-  <object x="128.667" y="480" width="31" height="31.6667"/>
-  <object x="993" y="32" width="30.6667" height="127.667"/>
-  <object x="1443" y="351.667" width="28.3333" height="128"/>
-  <object x="1209" y="576.5" width="37.5" height="95"/>
-  <object x="352" y="32.5" width="31.5" height="95"/>
- </objectgroup>
+ <objectgroup name="savePoints"/>
 </map>
