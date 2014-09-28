@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="32" tileheight="32" backgroundcolor="#115980">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <tileset firstgid="1" name="platformer" tilewidth="32" tileheight="32">
   <image source="../gfx/platformer.png" width="416" height="384"/>
   <tile id="55">
@@ -101,9 +101,95 @@
    </objectgroup>
   </tile>
  </tileset>
+ <tileset firstgid="157" name="blackandwhite" tilewidth="32" tileheight="32">
+  <image source="../gfx/Tiles-blackandwhite/blackandwhite.png" width="160" height="128"/>
+  <tile id="0">
+   <objectgroup draworder="index">
+    <object x="0" y="0">
+     <polygon points="0,0 31.8182,31.8182 -0.0909091,31.9091"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="1">
+   <objectgroup draworder="index">
+    <object x="0" y="31.7273">
+     <polygon points="0,0 31.9091,-31.6364 32.1818,0.0909091"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="2">
+   <objectgroup draworder="index">
+    <object x="0" y="31.8182">
+     <polygon points="0,0 31.9091,-31.6364 -0.272727,-31.8182"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="3">
+   <objectgroup draworder="index">
+    <object x="0" y="0">
+     <polygon points="0,0 31.9091,31.9091 32.1818,-0.0909091"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="9">
+   <objectgroup draworder="index">
+    <object x="0" y="0" width="31.9091" height="31.9091"/>
+   </objectgroup>
+  </tile>
+  <tile id="10">
+   <objectgroup draworder="index">
+    <object x="0" y="-0.0909091" width="32.0909" height="32.0909"/>
+   </objectgroup>
+  </tile>
+  <tile id="11">
+   <objectgroup draworder="index">
+    <object x="-0.181818" y="0" width="32.0909" height="31.9091"/>
+   </objectgroup>
+  </tile>
+  <tile id="12">
+   <objectgroup draworder="index">
+    <object x="0" y="0" width="31.9091" height="31.9091"/>
+   </objectgroup>
+  </tile>
+  <tile id="13">
+   <objectgroup draworder="index">
+    <object x="0.0909091" y="0.0909091" width="31.9091" height="31.8182"/>
+   </objectgroup>
+  </tile>
+  <tile id="14">
+   <objectgroup draworder="index">
+    <object x="0" y="0" width="31.8182" height="31.9091"/>
+   </objectgroup>
+  </tile>
+  <tile id="15">
+   <objectgroup draworder="index">
+    <object x="0.0909091" y="0.0909091" width="31.7273" height="31.7273"/>
+   </objectgroup>
+  </tile>
+  <tile id="16">
+   <objectgroup draworder="index">
+    <object x="0" y="0" width="31.8182" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="17">
+   <objectgroup draworder="index">
+    <object x="-0.0909091" y="0.0909091" width="32.1818" height="31.9091"/>
+   </objectgroup>
+  </tile>
+  <tile id="18">
+   <objectgroup draworder="index">
+    <object x="0" y="0" width="31.8182" height="31.8182"/>
+   </objectgroup>
+  </tile>
+  <tile id="19">
+   <objectgroup draworder="index">
+    <object x="0" y="0.0909091" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+ </tileset>
  <layer name="Kachelebene 1" width="200" height="200">
   <data encoding="base64" compression="zlib">
-   eJzt21tu2zAQBVDtoZtxP5IGTtp0g9lvSzQEpoRIiTJtCu05AIFApuV8zDXNh96WZXn7Dxoc8W1nvy8brz8tY+sw308+mGlvPqKfv9vX4pp88C/qzUfKxvfifflaTx3uHY/kg5n25CPV//NnyznI77t8XhtNPjiDMh+p3t8//865yJmI7cjvsnjP1MrfaJF8cAaxzq/Lnyz8WOq5yC336W3xnumzXyv/l3xwBuU40DMu5Bo+MpY8bbxPPjiD8jt8Zj6u4X+RD87A+AF15fzj6Ly7Vysf10U+OIdbxo9bpPpPc/zWGtaRe8oHI90y/9gS13Jr61itNaw1rX1F+WC0e40feU+99/NvIR+Mtjb/2Dr7EfuvfffHMygvRSv758+/Vl7vIR+MluYA75XX4jnES6Nf7ls7g9Ky1afM4GWpz1nkg9FS7dT2wuM5xKeiX8xKPJ8Y257aT30+Olpr3Us+GG3P2ujzyrWYldo5lLX9v5fl7/Gg95xKeXY4kg9GG7nHsJah1m+yLWvzoJjN2jMo8sEo98zHiIz0kA9Gu3c+4vf9vXMiH4z2iHysjSV5vWttLeqy7HtGpCQfjPbIfMSxpLUGHOu8Z39dPhjt0fmo5aX1DFWU18BSey2uywejzc7HVjty3l4+GGV2/e/JR8/eoXww0uz632o9+4et5+XhiNn1/6gGR8yuW/ngzGbXrXxwZrPrVj44s9l1Kx8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcB6/AARMTMM=
+   eJzt21tu4yAABVD2MOtvPuu2mcx0iS1SkBDCGD8i28k5EkrlYpIPbjCPhBDC1wYl2aKtvD3Y09/Oen8m/n+d0VaP64ZtwVJL+vTlt3wW1+SDZzS3T18q98Vr8ZnoY0Y7PeMR7K0nH7H/3+6lvG8I83LRSz44gjIfsb+/3f9Ouei5r1eetfIZLScfHEHez4f7axwPbvfXVrktKPn6VHzvsYzIB0dQjgNzxoXUh5eMJVPzefngCMrv8D3zMWSfRT44gjXjx3uYv26VGD84g3L+seUeRksrH/FzpOzZc2dPa8aPNdL40FrDWtombGXN/GNKvpY7to7VWsOqae0rygdbe9T4celsy5kUjqw2/5g6+5HXr33352dQamNH7f2HML1nOEU+eIS3kev5OcShUS/VHTuD0jJVp8zgWCYj+eBRxr7nU/+9FvXyrFxCXU/fj3X+/Zb/HeU7tNe95IM9jJ3Bqj0v5Wr7f+Uz1Hton0cpi3zwTFrPZFNq86C0L1Kbq8gHZ7QmI3PIB2dVzlkeQT44u/K3JbW1qDRPmbveKx88g6k14LKf92ZEPnhGPfuHydjYEq/LB69mye9R4FX07h+mvUN4Nb17hwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcHY/y+vQow==
   </data>
  </layer>
  <objectgroup name="dynamic">
@@ -123,11 +209,11 @@
  <objectgroup name="spikes">
   <object gid="99" x="512.667" y="552.667"/>
   <object gid="99" x="481.333" y="552.667"/>
-  <object gid="99" x="1023.33" y="208"/>
-  <object gid="99" x="1150.67" y="272"/>
-  <object gid="99" x="1055.33" y="400"/>
-  <object gid="99" x="1088.67" y="464"/>
-  <object gid="99" x="1184" y="336"/>
+  <object gid="99" x="1024" y="200"/>
+  <object gid="99" x="1151.34" y="264"/>
+  <object gid="99" x="1055.33" y="392.667"/>
+  <object gid="99" x="1089.34" y="456"/>
+  <object gid="99" x="1184.67" y="328.667"/>
   <object gid="99" x="1503.33" y="584"/>
   <object gid="99" x="1471.92" y="584"/>
   <object gid="99" x="1344.71" y="344.047" rotation="-179.83"/>
@@ -135,11 +221,11 @@
   <object gid="99" x="1120.67" y="744"/>
   <object gid="99" x="1088.33" y="744"/>
   <object gid="99" x="1056" y="744"/>
-  <object gid="88" x="768.667" y="456"/>
-  <object gid="99" x="926.333" y="560"/>
+  <object gid="88" x="768" y="448"/>
+  <object gid="99" x="928.333" y="552.667"/>
   <object gid="99" x="928.667" y="712.333"/>
-  <object gid="99" x="1503.5" y="752"/>
-  <object gid="99" x="1408.5" y="752"/>
+  <object gid="99" x="1504.17" y="744"/>
+  <object gid="99" x="1407.17" y="744"/>
   <object gid="99" x="608.151" y="120.153" rotation="-179.455"/>
   <object gid="99" x="639.859" y="119.36" rotation="-180.504"/>
   <object gid="99" x="192.5" y="200.5"/>
@@ -151,20 +237,20 @@
  <objectgroup name="killAreas">
   <object x="1056" y="536.667" width="351.333" height="6.66667"/>
   <object x="1312" y="825.333" width="319.333" height="6.33333"/>
-  <object x="1024.75" y="188" width="26" height="11"/>
-  <object x="1154" y="252.75" width="25.25" height="10.75"/>
-  <object x="1187.5" y="316" width="25.25" height="11.5"/>
-  <object x="1058" y="381" width="26" height="10.75"/>
-  <object x="1092" y="445" width="25" height="10.25"/>
+  <object x="1024.75" y="180" width="26" height="11"/>
+  <object x="1154" y="242.75" width="25.25" height="10.75"/>
+  <object x="1188.17" y="308" width="25.25" height="11.5"/>
+  <object x="1058" y="372.333" width="26" height="10.75"/>
+  <object x="1092.67" y="435.667" width="25" height="10.25"/>
   <object x="1315" y="352.25" width="26.75" height="10"/>
   <object x="1410.25" y="353.5" height="0.25"/>
   <object x="1410" y="351.75" width="26.25" height="11"/>
   <object x="1475.5" y="564.5" width="56.25" height="11"/>
-  <object x="1506.75" y="733.5" width="25" height="9.75"/>
-  <object x="1412" y="732.5" width="24.75" height="10.75"/>
+  <object x="1507.42" y="724.167" width="25" height="9.75"/>
+  <object x="1410.67" y="723.833" width="24.75" height="10.75"/>
   <object x="1059.5" y="725" width="121" height="10.5"/>
   <object x="932.25" y="692.5" width="25" height="11.5"/>
-  <object x="929.25" y="541.5" width="25.75" height="10"/>
+  <object x="931.25" y="531.5" width="25.75" height="10"/>
   <object x="579.75" y="128" width="56.25" height="10.25"/>
   <object x="565.25" y="34" width="10.25" height="57"/>
   <object x="196" y="181.75" width="25" height="10.5"/>
