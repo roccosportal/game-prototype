@@ -3,9 +3,10 @@ require("src/game")
 require("src/map")
 require("src/player")
 require("src/contact-event-manager")
-require("src/overlays/damage")
+
 game.overlays = {}
 game.overlays.sounds = require("src/overlays/sounds")
+game.overlays.damage = require("src/overlays/damage")
 require("lib/monocle/monocle")
 game.camera = require("src/camera")
 
@@ -43,7 +44,7 @@ function love.load()
 		
 		game.overlays.sounds.init()
 	
-		game.overlays.damage = DamageOverlay.create()
+		game.overlays.damage.init()
 end
 
 

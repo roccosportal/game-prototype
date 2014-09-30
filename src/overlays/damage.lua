@@ -1,23 +1,16 @@
-DamageOverlay = {}
-DamageOverlay.__index = DamageOverlay
-
+self = {}
 
 local ALPHA_DECREASING_SPEED = 100
 local ALPHA_START = 200
 
-function DamageOverlay.create()
-  local self = setmetatable({}, DamageOverlay)
-  
+function self.init()
   self.isVisible = false
   self.duration = 0
   self.alpha = 0
   self.canvas = love.graphics.newCanvas()
-  
-  
-  return self
 end
 
-function DamageOverlay:update(dt)
+function self:update(dt)
   if self.isVisible then
     self.alpha = self.alpha - dt * ALPHA_DECREASING_SPEED
     if self.alpha < 0 then
@@ -26,14 +19,16 @@ function DamageOverlay:update(dt)
   end
 end
 
-function DamageOverlay:show()
+function self:show()
   self.isVisible = true
   self.alpha = ALPHA_START
 end
 
-function DamageOverlay:draw()
+function self:draw()
   if self.isVisible then
       self.canvas:clear(255, 0, 0, self.alpha)
       love.graphics.draw(self.canvas)
   end
 end
+
+return self
