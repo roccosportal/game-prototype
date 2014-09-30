@@ -62,8 +62,9 @@ function Player.create(x,y, world)
 end
 
 function Player:update(dt)
+  
   -- move the player only in the update method, because the body might be locked elsewhere
-  if self.moveToSavePoint then
+  if self.moveToSavePoint or love.keyboard.isDown("r") then
     self.body:setX(self.savePoint.x)
     self.body:setY(self.savePoint.y)
     self.body:setLinearVelocity(0,0)
