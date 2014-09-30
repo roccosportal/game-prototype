@@ -27,7 +27,7 @@ function Player.create(x,y, world)
   self.fixture = love.physics.newFixture(self.body, self.shape, MASS)
   self.fixture:setRestitution(RESITUTION) 
   self.fixture:setUserData("player")
-  self.moveTo = nil
+  self.moveToSavePoint = false
   
   
   local function beginContact(fixture, contact)
@@ -63,11 +63,13 @@ end
 
 function Player:update(dt)
   -- move the player only in the update method, because the body might be locked elsewhere
-  if self.moveTo then
-    self.body:setX(self.moveTo.x)
-    self.body:setY(self.moveTo.y)
+  if self.moveToSavePoint then
+    self.body:setX(self.savePoint.x)
+    self.body:setY(self.savePoint.y)
     self.body:setLinearVelocity(0,0)
-    self.moveTo = nil
+    self.body:setAngularVelocity(0)
+    game.map:resetObjectForSavePoint(self.savePoint.id)
+    self.moveToSavePoint = false
   end
   
   self.jumpReactionTimer = self.jumpReactionTimer - 1000 * dt
@@ -144,17 +146,14 @@ function Player:draw()
     love.graphics.circle("fill", self:getX(), self:getY(), RADIUS)
 end
 
-function Player:moveToPoint(x, y, freeze)
-    -- move the player only in the update method, because the body might be locked elsewhere
-    self.moveTo = {x = x, y = y, freeze = freeze}
-end
-
-function Player:setSavePoint(x, y)
-    self.savePoint = {x = x, y = y}
+function Player:setSavePoint(x, y, id)
+    self.savePoint = {x = x, y = y, id = id}
 end
 
 function Player:kill()
     game.overlays.damage:show()
-    self.body:setAngularVelocity(0)
-    self:moveToPoint(self.savePoint.x, self.savePoint.y, true)
+    
+    -- move the player only in the update method, because the body might be locked elsewhere
+    self.moveToSavePoint = true
+
 end

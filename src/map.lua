@@ -10,6 +10,7 @@ function Map.create(path, world)
     self.world = world
     self.player = {x = 0, y = 0}
     self.mapSTI = STI.new(path)
+    self.resetObjects = {}
 
     self:initRopes()
 		self:initDynamicLayer()
@@ -30,9 +31,23 @@ function Map:initDynamicLayer()
           self.player.y = object.y + object.height / 2
           self.dynamics.objects[_] = nil
       elseif object.shape == "rectangle" then
-        object.body = love.physics.newBody(self.world, object.x + (object.width / 2), object.y + (object.height / 2), "dynamic")
+        local x, y = object.x + (object.width / 2), object.y + (object.height / 2)
+        object.body = love.physics.newBody(self.world, x, y, "dynamic")
         object.shape = love.physics.newRectangleShape(0, 0, object.width, object.height)
         object.fixture = love.physics.newFixture(object.body, object.shape, 5)
+        
+      
+        
+        if object.properties.resetSavePoint ~= nil then
+          data = {
+            savePointId = object.properties.resetSavePoint,
+            object = object,
+            x = x,
+            y = y,
+            type = "rectangle"
+          }
+          table.insert(self.resetObjects, data)
+        end
         
         -- body object should be used
         object.x = nil
@@ -91,7 +106,7 @@ function Map:initSavePoints()
       local function contactFilter(fixture)
         -- nothing hits me
         if game.player.fixture == fixture then
-          game.player:setSavePoint(savePoint.body:getX(),savePoint.body:getY())
+          game.player:setSavePoint(savePoint.body:getX(),savePoint.body:getY(), savePoint.properties.id)
         end
         return false
       end
@@ -210,6 +225,26 @@ end
 
 function Map:getPlayerStartingPosition()
   return self.player.x, self.player.y
+end
+
+function Map:resetObjectForSavePoint(id)
+  if id == nil then
+    return
+  end
+  
+  for _, object in pairs(self.resetObjects) do
+    if object.savePointId == id then
+        object.object.body:setActive(false)
+        object.object.body:setLinearVelocity(0, 0)
+        object.object.body:setAngularVelocity(0)
+        object.object.body:setX(object.x)
+        object.object.body:setY(object.y)
+        object.object.body:setAngle(0)
+        object.object.body:setActive(true)
+        
+        
+    end
+  end
 end
   
   
