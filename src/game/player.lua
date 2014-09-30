@@ -1,5 +1,4 @@
-Player = {}
-Player.__index = Player
+self = {}
 
 local RADIUS = 14
 local RESITUTION = 0.4
@@ -10,8 +9,7 @@ local SIDE_SPEED = 350
 local MAX_SIDE_SPEED = 180
 local JUMP_REACTION = 100
 
-function Player.create(x,y, world)
-  local self = setmetatable({}, Player)
+function self.init(x,y, world)
   self.groundFixture = nil
   self.onGround = true
   self.isJumping = false
@@ -58,10 +56,10 @@ function Player.create(x,y, world)
   end
   
   game.contactEventManager:register(self.fixture, beginContact, endContact)
-  return self
+
 end
 
-function Player:update(dt)
+function self.update(dt)
   
   -- move the player only in the update method, because the body might be locked elsewhere
   if self.moveToSavePoint or love.keyboard.isDown("r") then
@@ -91,7 +89,6 @@ function Player:update(dt)
   end
 
   if love.keyboard.isDown("right") then
-    --logline(x)
     if x < 0 then
       self.body:setLinearVelocity(0, y) 
       self.body:setAngularVelocity(0)
@@ -118,43 +115,41 @@ function Player:update(dt)
     end
   end
 
-  --logline(self.body:getLinearVelocity( ))
-
-
-
   if not love.keyboard.isDown("up") and self.isJumping == true and y < 0 then
     -- decrease jump speed
     self.body:applyForce(0, JUMP_DECREASE)
   end  
 end
 
-function Player:getX()
+function self.getX()
   return self.body:getX()
 end
 
-function Player:getY()
+function self.getY()
   return self.body:getY()
 end
 
-function Player:getCenter()
+function self.getCenter()
     return self:getX() - RADIUS, self:getY() - RADIUS
 end
 
 
 
-function Player:draw()
+function self.draw()
     love.graphics.setColor(193, 47, 14) 
     love.graphics.circle("fill", self:getX(), self:getY(), RADIUS)
 end
 
-function Player:setSavePoint(x, y, id)
+function self.setSavePoint(x, y, id)
     self.savePoint = {x = x, y = y, id = id}
 end
 
-function Player:kill()
-    game.overlays.damage:show()
+function self.kill()
+    game.overlays.damage.show()
     
     -- move the player only in the update method, because the body might be locked elsewhere
     self.moveToSavePoint = true
 
 end
+
+return self

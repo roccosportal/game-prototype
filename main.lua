@@ -32,7 +32,7 @@ function love.load()
     -- create player 
 		local px, py = game.map:getPlayerStartingPosition()
 		game.camera:setCenter(px, py)
-		game.player = Player.create(px, py, world)
+		game.player.init(px, py, world)
     Monocle.watch("onGround", function() return tostring(game.player.onGround) end)
     
 
@@ -46,13 +46,13 @@ end
 function love.update( dt )
 		world:update(dt)
 		game.map:update(dt)
-		game.player:update(dt)  
+		game.player.update(dt)  
 		game.overlays.sounds.update(dt)
 		
 		-- try center camera at player
 		local ww = love.graphics.getWidth()
 		local wh = love.graphics.getHeight()
-		local x, y = game.player:getCenter()
+		local x, y = game.player.getCenter()
 		x =  math.floor(x - ww / 2)
 		y =  math.floor(y - wh / 2)
 
@@ -71,7 +71,7 @@ function love.draw()
 		love.graphics.setBackgroundColor(255, 255, 255)
 		love.graphics.clear()
 		game.map:draw()
-		game.player:draw()
+		game.player.draw()
 		
     game.camera:unset()
     

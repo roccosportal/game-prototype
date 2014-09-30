@@ -106,7 +106,7 @@ function Map:initSavePoints()
       local function contactFilter(fixture)
         -- nothing hits me
         if game.player.fixture == fixture then
-          game.player:setSavePoint(savePoint.body:getX(),savePoint.body:getY(), savePoint.properties.id)
+          game.player.setSavePoint(savePoint.body:getX(),savePoint.body:getY(), savePoint.properties.id)
         end
         return false
       end
