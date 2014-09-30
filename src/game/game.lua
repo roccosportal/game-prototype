@@ -75,4 +75,8 @@ function beginContact(a, b, contact)
     end	
 end
 
+function self.keypressed(key)
+  
+end
+
 return self

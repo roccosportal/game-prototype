@@ -1,8 +1,12 @@
 require("src/helpers")
 require("lib/monocle/monocle")
+menu = require("src/menu/menu")
 game = require("src/game/game")
 
+state = nil
+
 function love.load()
+    state = menu
     Monocle.new({
        isActive=false,
        customPrinter=false,
@@ -10,33 +14,37 @@ function love.load()
        debugToggle='.'   
     })
     Monocle.watch("FPS", function() return math.floor(1/love.timer.getDelta()) end)
-		game.init()
+		state.init()
 end
 
 
 function love.update( dt )
-    game.update(dt)
-    Monocle.update(dt)
+  state.update(dt)
+  Monocle.update(dt)
 	
 end
 
 function love.draw()
-    game.draw()
-	  Monocle.draw()
+  
+  state.draw()
+  Monocle.draw()
 end
 
 function love.resize(w, h)
-    game.resize(w,h)
+  state.resize(w,h)
 end
 
-
+function changeState(state)
+  
+end
 
 function love.textinput(t)
     Monocle.textinput(t)
 end
 
-function love.keypressed(text)
-    Monocle.keypressed(text)
+function love.keypressed(key)
+    state.keypressed(key)
+    Monocle.keypressed(key)
 end
 
 
