@@ -16,39 +16,27 @@ end
 
 function love.load()
     Monocle.new({
-        isActive=false,          -- Whether the debugger is initially active
-       customPrinter=false,    -- Whether Monocle prints status messages to the output
-       printColor = {51,51,51},-- Color to print with
+       isActive=false,
+       customPrinter=false,
+       printColor = {51,51,51},
        debugToggle='.'   
     })
     Monocle.watch("FPS", function() return math.floor(1/love.timer.getDelta()) end)
-		-- love.window.setFullscreen(true)
-
-		
-		-- map:removeLayer(1)
-
-		--collision = map:getCollisionMap("collision")
-
-		love.physics.setMeter(64) --the height of a meter our worlds will be 64px
-	  world = love.physics.newWorld(0, 9.81*64, true) --create a world for the bodies to exist in with horizontal gravity of 0 and vertical gravity of 9.81
-	
-	
+		love.physics.setMeter(64)
+    
+	  world = love.physics.newWorld(0, 9.81*64, true)
+	   
 	 	game.contactEventManager = ContactEventManager.create(world)
 		game.contactEventManager:onBeginContact(beginContact)
 		
 		game.map = Map.create("maps/test", world)
-		-- map = sti.new("maps/test")
-		-- dynamicLayer = map.layers["dynamic"]
-		-- 
-		-- collisionMap = map:initWorldCollision(world)
-
-
+    
+    -- create player 
 		local px, py = game.map:getPlayerStartingPosition()
 		game.camera:setCenter(px, py)
-		-- game.camera.rotation = 0.05
 		game.player = Player.create(px, py, world)
     Monocle.watch("onGround", function() return tostring(game.player.onGround) end)
-		
+    
 		local w, h = game.map:getWorldSize()
 		fogCanvas = love.graphics.newCanvas()
 		
@@ -58,48 +46,36 @@ end
 
 
 function love.update( dt )
-  
 		world:update(dt)
 		game.map:update(dt)
-
 		game.player:update(dt)  
-
 		game.soundVisualisations.update(dt)
-		
 		
 		-- try center camera at player
 		local ww = love.graphics.getWidth()
 		local wh = love.graphics.getHeight()
-		
 		local x, y = game.player:getCenter()
 		x =  math.floor(x - ww / 2)
 		y =  math.floor(y - wh / 2)
 
 		game.camera:update(dt, x, y)
-		
+    
 	  game.overlays.damage:update(dt)
     Monocle.update()
 	
 end
 
 function love.draw()
-		
-	
-		
 		love.graphics.setCanvas()
-		
+    
 		game.camera:set()
-		
+    
 		love.graphics.setBackgroundColor(255, 255, 255)
 		love.graphics.clear()
-		
-		
 		game.map:draw()
-  	
 		game.player:draw()
 		
 		-- draw white over layer and only make certain areas visible
-		
 		love.graphics.setCanvas(fogCanvas)
 	  fogCanvas:clear(255,255, 255, 255)
 	  love.graphics.setBlendMode("subtractive")
@@ -115,7 +91,6 @@ function love.draw()
 		game.camera:unset()
 		
 		love.graphics.draw(fogCanvas)
-		
 		game.overlays.damage:draw()
 	  Monocle.draw()
 end
