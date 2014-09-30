@@ -29,7 +29,7 @@ function self.init(x,y, world)
   
   
   local function beginContact(fixture, contact)
-      for _, area in pairs(game.map.killAreas) do
+      for _, area in pairs(game.map.current.killAreas) do
         if area.fixture == fixture then
             self:kill()
             return nil
@@ -67,7 +67,7 @@ function self.update(dt)
     self.body:setY(self.savePoint.y)
     self.body:setLinearVelocity(0,0)
     self.body:setAngularVelocity(0)
-    game.map:resetObjectForSavePoint(self.savePoint.id)
+    game.map.current:resetObjectForSavePoint(self.savePoint.id)
     self.moveToSavePoint = false
   end
   

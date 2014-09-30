@@ -1,8 +1,10 @@
 local STI = require("lib/sti")
 
-Map = {}
-Map.__index = Map
-function Map.create(path, world)
+-- module
+
+map = {}
+map.current = nil
+function map.create(path, world)
     local self = setmetatable({}, Map)
     self.dynamics = {
       objects = {}
@@ -16,10 +18,15 @@ function Map.create(path, world)
 		self:initDynamicLayer()
     self:initKillAreas()
     self:initSavePoints()
-    self.mapSTI:initWorldCollision(world)    
+    self.mapSTI:initWorldCollision(world)   
+    map.current = self 
     return self
 end
 
+-- class starts here
+
+Map = {}
+Map.__index = Map
 
 function Map:initDynamicLayer()
   if self.mapSTI.layers["dynamic"] then
@@ -247,4 +254,4 @@ function Map:resetObjectForSavePoint(id)
   end
 end
   
-  
+return map  

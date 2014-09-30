@@ -27,10 +27,10 @@ function love.load()
 	 	game.contactEventManager.init(world)
 		game.contactEventManager.onBeginContact(beginContact)
 		
-		game.map = Map.create("maps/test", world)
+		game.map.create("maps/test", world)
     
     -- create player 
-		local px, py = game.map:getPlayerStartingPosition()
+		local px, py = game.map.current:getPlayerStartingPosition()
 		game.camera:setCenter(px, py)
 		game.player.init(px, py, world)
     Monocle.watch("onGround", function() return tostring(game.player.onGround) end)
@@ -45,7 +45,7 @@ end
 
 function love.update( dt )
 		world:update(dt)
-		game.map:update(dt)
+		game.map.current:update(dt)
 		game.player.update(dt)  
 		game.overlays.sounds.update(dt)
 		
@@ -70,7 +70,7 @@ function love.draw()
     
 		love.graphics.setBackgroundColor(255, 255, 255)
 		love.graphics.clear()
-		game.map:draw()
+		game.map.current:draw()
 		game.player.draw()
 		
     game.camera:unset()
@@ -81,7 +81,7 @@ function love.draw()
 end
 
 function love.resize(w, h)
-    game.map:resize(w, h)
+    game.map.current:resize(w, h)
 end
 
 function beginContact(a, b, contact)

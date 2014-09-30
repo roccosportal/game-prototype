@@ -1,6 +1,6 @@
 local self = {}
 
-require("src/game/map")
+self.map = require("src/game/map")
 self.player = require("src/game/player")
 self.contactEventManager = require("src/game/contact-event-manager")
 
