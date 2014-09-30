@@ -1,9 +1,11 @@
 require("src/game")
-require("src/sound-visualisation")
+
 require("src/map")
 require("src/player")
 require("src/contact-event-manager")
 require("src/overlays/damage")
+game.overlays = {}
+game.overlays.sounds = require("src/overlays/sounds")
 require("lib/monocle/monocle")
 game.camera = require("src/camera")
 
@@ -37,10 +39,10 @@ function love.load()
 		game.player = Player.create(px, py, world)
     Monocle.watch("onGround", function() return tostring(game.player.onGround) end)
     
-		local w, h = game.map:getWorldSize()
-		fogCanvas = love.graphics.newCanvas()
+
 		
-		game.overlays = {}
+		game.overlays.sounds.init()
+	
 		game.overlays.damage = DamageOverlay.create()
 end
 
@@ -49,7 +51,7 @@ function love.update( dt )
 		world:update(dt)
 		game.map:update(dt)
 		game.player:update(dt)  
-		game.soundVisualisations.update(dt)
+		game.overlays.sounds.update(dt)
 		
 		-- try center camera at player
 		local ww = love.graphics.getWidth()
@@ -75,22 +77,9 @@ function love.draw()
 		game.map:draw()
 		game.player:draw()
 		
-		-- draw white over layer and only make certain areas visible
-		love.graphics.setCanvas(fogCanvas)
-	  fogCanvas:clear(255,255, 255, 255)
-	  love.graphics.setBlendMode("subtractive")
-		for _,soundVisualisation in pairs(game.soundVisualisations.list) do
-				love.graphics.setColor(255, 255, 255, soundVisualisation:getAlpha())
-				love.graphics.circle("fill", soundVisualisation:getX(), soundVisualisation:getY(), soundVisualisation:getRadius(), 200)
-		end
-		love.graphics.setColor(255, 255, 255, 255)
-		
-		love.graphics.setCanvas()
-		love.graphics.setBlendMode('alpha')
-		
-		game.camera:unset()
-		
-		love.graphics.draw(fogCanvas)
+    game.camera:unset()
+    
+    game.overlays.sounds.draw()
 		game.overlays.damage:draw()
 	  Monocle.draw()
 end
@@ -103,7 +92,7 @@ function beginContact(a, b, contact)
 	  -- if player do nothing
 		if a ~= game.player.fixture and b ~= game.player.fixture then
 			-- forward collision to sound visualisations
-			game.soundVisualisations.collision(contact, a, b)
+			game.overlays.sounds.collision(contact, a, b)
 		end	
 end
 

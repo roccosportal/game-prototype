@@ -46,7 +46,7 @@ function Player.create(x,y, world)
       end
     
       -- forward collision to sound visualisations
-      game.soundVisualisations.collision(contact, self.fixture, fixture)
+      game.overlays.sounds.collision(contact, self.fixture, fixture)
   end
 
   local function endContact(fixture, contact)
