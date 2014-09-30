@@ -1,16 +1,21 @@
 Player = {}
 Player.__index = Player
 
-local RADIUS = 10
-local JUMP_DECREASE = 400
+local RADIUS = 14
+local RESITUTION = 0.4
+local MASS = 4
+local JUMP_DECREASE = 800
 local JUMP_SPEED = 400
-local SIDE_SPPED = 150
+local SIDE_SPEED = 350
+local MAX_SIDE_SPEED = 180
+local JUMP_REACTION = 100
 
 function Player.create(x,y, world)
   local self = setmetatable({}, Player)
   self.groundFixture = nil
   self.onGround = true
   self.isJumping = false
+  self.jumpReactionTimer = 0
   -- the starting position marks the center of the ball
   -- we need to translate the position to the upper right corner
   x = x - RADIUS
@@ -19,8 +24,8 @@ function Player.create(x,y, world)
   self.savePoint = {x = x, y = y}
   self.body = love.physics.newBody(world, x, y, "dynamic") 
   self.shape = love.physics.newCircleShape(RADIUS) 
-  self.fixture = love.physics.newFixture(self.body, self.shape, 5)
-  self.fixture:setRestitution(0.4) 
+  self.fixture = love.physics.newFixture(self.body, self.shape, MASS)
+  self.fixture:setRestitution(RESITUTION) 
   self.fixture:setUserData("player")
   self.moveTo = nil
   
@@ -48,6 +53,7 @@ function Player.create(x,y, world)
       if self.groundFixture == fixture then
         self.groundFixture = nil
         self.onGround = false
+        self.jumpReactionTimer = JUMP_REACTION
       end
   end
   
@@ -64,10 +70,13 @@ function Player:update(dt)
     self.moveTo = nil
   end
   
+  self.jumpReactionTimer = self.jumpReactionTimer - 1000 * dt
+  
   local x, y = self.body:getLinearVelocity( )
   
   if love.keyboard.isDown("up") then
-    if(self.onGround == true) then
+    if(self.onGround == true or self.jumpReactionTimer > 0) then
+      self.jumpReactionTimer = 0
       self.onGround = false
       self.isJumping = true
       self.body:setLinearVelocity( x, -JUMP_SPEED)
@@ -79,17 +88,34 @@ function Player:update(dt)
   end
 
   if love.keyboard.isDown("right") then
+    --logline(x)
     if x < 0 then
-      self.body:setLinearVelocity(0, y)
+      self.body:setLinearVelocity(0, y) 
+      self.body:setAngularVelocity(0)
+    else
+      self.body:applyForce(SIDE_SPEED, 0)
     end
-    self.body:applyForce(SIDE_SPPED, 0)
+    
+
+    if x > MAX_SIDE_SPEED then
+      self.body:setLinearVelocity(MAX_SIDE_SPEED, y)
+    end
   elseif love.keyboard.isDown("left") then
     if x > 0 then
+      
       self.body:setLinearVelocity(0, y)
+      self.body:setAngularVelocity(0)
+    else
+      self.body:applyForce(-SIDE_SPEED, 0)  
     end
-    self.body:applyForce(-SIDE_SPPED, 0)
+    
+    
+    if x < -MAX_SIDE_SPEED then
+      self.body:setLinearVelocity(-MAX_SIDE_SPEED, y)
+    end
   end
 
+  --logline(self.body:getLinearVelocity( ))
 
 
 
@@ -129,5 +155,6 @@ end
 
 function Player:kill()
     game.overlays.damage:show()
+    self.body:setAngularVelocity(0)
     self:moveToPoint(self.savePoint.x, self.savePoint.y, true)
 end

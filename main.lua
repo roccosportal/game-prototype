@@ -47,10 +47,11 @@ end
 
 
 function love.update( dt )
+  
 		world:update(dt)
 		game.map:update(dt)
 
-		game.player:update(dt)
+		game.player:update(dt)  
 
 		game.soundVisualisations.update(dt)
 		
