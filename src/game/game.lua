@@ -76,7 +76,10 @@ function beginContact(a, b, contact)
 end
 
 function self.keypressed(key)
-  
+    if key == "escape" then
+        menu.enableContinue()
+        state = menu
+    end
 end
 
 return self
