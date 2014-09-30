@@ -4,6 +4,7 @@ require("src/map")
 require("src/player")
 require("src/contact-event-manager")
 require("src/overlays/damage")
+require("lib/monocle/monocle")
 game.camera = require("src/camera")
 
 function string.starts(String,Start)
@@ -11,7 +12,16 @@ function string.starts(String,Start)
 end
 
 
-function love.load()	
+
+
+function love.load()
+    Monocle.new({
+        isActive=false,          -- Whether the debugger is initially active
+       customPrinter=false,    -- Whether Monocle prints status messages to the output
+       printColor = {51,51,51},-- Color to print with
+       debugToggle='.'   
+    })
+    Monocle.watch("FPS", function() return math.floor(1/love.timer.getDelta()) end)
 		-- love.window.setFullscreen(true)
 
 		
@@ -37,6 +47,7 @@ function love.load()
 		game.camera:setCenter(px, py)
 		-- game.camera.rotation = 0.05
 		game.player = Player.create(px, py, world)
+    Monocle.watch("onGround", function() return tostring(game.player.onGround) end)
 		
 		local w, h = game.map:getWorldSize()
 		fogCanvas = love.graphics.newCanvas()
@@ -67,6 +78,7 @@ function love.update( dt )
 		game.camera:update(dt, x, y)
 		
 	  game.overlays.damage:update(dt)
+    Monocle.update()
 	
 end
 
@@ -105,7 +117,7 @@ function love.draw()
 		love.graphics.draw(fogCanvas)
 		
 		game.overlays.damage:draw()
-	
+	  Monocle.draw()
 end
 
 function love.resize(w, h)
@@ -117,11 +129,17 @@ function beginContact(a, b, contact)
 		if a ~= game.player.fixture and b ~= game.player.fixture then
 			-- forward collision to sound visualisations
 			game.soundVisualisations.collision(contact, a, b)
-		end
-
-		
-		
+		end	
 end
+
+function love.textinput(t)
+    Monocle.textinput(t)
+end
+
+function love.keypressed(text)
+    Monocle.keypressed(text)
+end
+
 
 function logline(message)
 	io.write ("\n[" .. love.timer.getTime() .. "]")
