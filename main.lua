@@ -63,7 +63,7 @@ function love.update( dt )
 
 		game.camera:update(dt, x, y)
     
-	  game.overlays.damage:update(dt)
+	  game.overlays.damage.update(dt)
     Monocle.update()
 	
 end
@@ -81,7 +81,7 @@ function love.draw()
     game.camera:unset()
     
     game.overlays.sounds.draw()
-		game.overlays.damage:draw()
+		game.overlays.damage.draw()
 	  Monocle.draw()
 end
 
