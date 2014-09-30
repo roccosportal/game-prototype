@@ -1,4 +1,4 @@
-require("src/overlays/sound")
+require("src/game/overlays/sound")
 
 local self = {}
 self.list = {}

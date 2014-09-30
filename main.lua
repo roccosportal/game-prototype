@@ -1,14 +1,9 @@
-require("src/game")
-
-require("src/map")
-require("src/player")
-require("src/contact-event-manager")
-
-game.overlays = {}
-game.overlays.sounds = require("src/overlays/sounds")
-game.overlays.damage = require("src/overlays/damage")
 require("lib/monocle/monocle")
-game.camera = require("src/camera")
+game = require("src/game/game")
+
+
+
+
 
 function string.starts(String,Start)
    return string.sub(String,1,string.len(Start))==Start
