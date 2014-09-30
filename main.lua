@@ -1,10 +1,6 @@
+require("src/helpers")
 require("lib/monocle/monocle")
 game = require("src/game/game")
-
-function string.starts(String,Start)
-   return string.sub(String,1,string.len(Start))==Start
-end
-
 
 function love.load()
     Monocle.new({
