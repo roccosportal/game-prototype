@@ -55,7 +55,7 @@ function self.init(x,y, world)
       end
   end
   
-  game.contactEventManager:register(self.fixture, beginContact, endContact)
+  game.contactEventManager.register(self.fixture, beginContact, endContact)
 
 end
 

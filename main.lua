@@ -24,8 +24,8 @@ function love.load()
     
 	  world = love.physics.newWorld(0, 9.81*64, true)
 	   
-	 	game.contactEventManager = ContactEventManager.create(world)
-		game.contactEventManager:onBeginContact(beginContact)
+	 	game.contactEventManager.init(world)
+		game.contactEventManager.onBeginContact(beginContact)
 		
 		game.map = Map.create("maps/test", world)
     

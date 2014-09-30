@@ -86,7 +86,7 @@ function Map:initKillAreas()
         area.height = nil
         
         if area.properties.isCollidable ~= nil or area.properties.isCollidable then 
-          game.contactEventManager:register(area.fixture, nil, nil, nil, nil, contactFilter)
+          game.contactEventManager.register(area.fixture, nil, nil, nil, nil, contactFilter)
         end
     end
 
@@ -121,7 +121,7 @@ function Map:initSavePoints()
       savePoint.width = nil
       savePoint.height = nil
       
-      game.contactEventManager:register(savePoint.fixture, nil, nil, nil, nil, contactFilter)
+      game.contactEventManager.register(savePoint.fixture, nil, nil, nil, nil, contactFilter)
     end
     
     

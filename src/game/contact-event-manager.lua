@@ -1,9 +1,6 @@
-ContactEventManager = {}
-ContactEventManager.__index = ContactEventManager
+local self = {}
 
-
-function ContactEventManager.create(world)
-  local self = setmetatable({}, ContactEventManager)
+function self.init(world)
   self.fixtures = {}
   self.callbacks = {
       onBeginContact = {},
@@ -14,53 +11,52 @@ function ContactEventManager.create(world)
   }
   
   local function beginContact(a, b, contact)
-      self:call(self.callbacks.onBeginContact, {a, b, contact})
-      self:invokeEvent("beginContact", a, b, {contact})  
+      self.call(self.callbacks.onBeginContact, {a, b, contact})
+      self.invokeEvent("beginContact", a, b, {contact})  
   end
 
   local function endContact(a, b, contact)
-      self:call(self.callbacks.onEndContact, {a, b, contact})
-      self:invokeEvent("endContact", a, b, {contact})
+      self.call(self.callbacks.onEndContact, {a, b, contact})
+      self.invokeEvent("endContact", a, b, {contact})
   end
 
   local function preSolve(a, b, contact)
-      self:call(self.callbacks.onPreSolve, {a, b, contact})
-      self:invokeEvent("preSolve", a, b, {contact})
+      self.call(self.callbacks.onPreSolve, {a, b, contact})
+      self.invokeEvent("preSolve", a, b, {contact})
   end
 
   local function postSolve(a, b, contact, normalimpulse1, tangentimpulse1, normalimpulse2, tangentimpulse2)
-      self:call(self.callbacks.onPostSolve, {a, b, contact, normalimpulse1, tangentimpulse1, normalimpulse2, tangentimpulse2})
-      self:invokeEvent("postSolve", a, b, {contact, normalimpulse1, tangentimpulse1, normalimpulse2, tangentimpulse2})
+      self.call(self.callbacks.onPostSolve, {a, b, contact, normalimpulse1, tangentimpulse1, normalimpulse2, tangentimpulse2})
+      self.invokeEvent("postSolve", a, b, {contact, normalimpulse1, tangentimpulse1, normalimpulse2, tangentimpulse2})
   end
   
   world:setCallbacks(beginContact, endContact, preSolve, postSolve)
   
   local function contactFilter(a, b)
-      self:call(self.callbacks.onContactFilter, {a, b})
-      return self:invokeEvent("contactFilter", a, b, {})
+      self.call(self.callbacks.onContactFilter, {a, b})
+      return self.invokeEvent("contactFilter", a, b, {})
   end
   
   world:setContactFilter(contactFilter)
-  return self
 end
 
-function ContactEventManager:onBeginContact(callback)
+function self.onBeginContact(callback)
   table.insert(self.callbacks.onBeginContact, callback)
 end
 
-function ContactEventManager:onEndContact(callback)
+function self.onEndContact(callback)
   table.insert(self.callbacks.onEndContact, callback)
 end
 
-function ContactEventManager:onPreSolve(callback)
+function self.onPreSolve(callback)
   table.insert(self.callbacks.onPreSolve, callback)
 end
 
-function ContactEventManager:onPostSolve(callback)
+function self.onPostSolve(callback)
   table.insert(self.callbacks.onPostSolve, callback)
 end
 
-function ContactEventManager:register(fixture, beginContact, endContact, preSolve, postSolve, contactFilter)
+function self.register(fixture, beginContact, endContact, preSolve, postSolve, contactFilter)
   -- beginContact = beginContact or function() return nil end
   -- endContact = endContact or function() return nil end
   -- preSolve = preSolve or function() return nil end
@@ -81,13 +77,13 @@ function ContactEventManager:register(fixture, beginContact, endContact, preSolv
   table.insert(self.fixtures, data)
 end
 
-function ContactEventManager:call(t, args)
+function self.call(t, args)
   for _, callback in ipairs(t) do
     callback(unpack(args))
   end
 end
 
-function ContactEventManager:invokeEvent(event,a, b, args)
+function self.invokeEvent(event,a, b, args)
     local aMatch = false
     local bMatch = false
     local returnValueA = nil
@@ -122,3 +118,4 @@ function ContactEventManager:invokeEvent(event,a, b, args)
       return false -- false is the more greedy one
     end
 end
+return self
