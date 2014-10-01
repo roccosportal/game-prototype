@@ -7,6 +7,8 @@ levelSelection = require("src/level-selection/level-selection")
 state = nil
 
 function love.load()
+    love.window.setMode(0, 0, {fullscreen = true} )
+    
     state = menu
     Monocle.new({
        isActive=false,
