@@ -36,4 +36,13 @@ function Physical:registerPhysicalObject(body, shape, fixture)
     table.insert(self.physicalObjects, o)
 end
 
+function Physical:containsFixture(fixture)
+  for _, o in ipairs(self.physicalObjects) do
+    if fixture == o.fixture then
+      return true
+    end
+  end
+  return false
+end
+
 return Physical

@@ -1,5 +1,10 @@
 self = {}
 
+local class = require('lib/middleclass/middleclass')
+local KillArea = require("src/game/objects/KillArea")
+local Object = class.Object
+
+
 local RADIUS = 14
 local RESITUTION = 0.4
 local MASS = 4
@@ -28,13 +33,18 @@ function self.init(x,y, world)
   self.moveToSavePoint = false
   
   
-  local function beginContact(fixture, contact)
-      for _, area in pairs(game.map.current.killAreas) do
-        if area.fixture == fixture then
+  local function beginContact(fixture, contact)    
+      for _, object in pairs(game.map.current.objects) do
+        if object:containsFixture(fixture) then
+          if object:isInstanceOf(KillArea) then
             self:kill()
             return nil
+          end
+          break
         end
       end 
+      
+      Object.isInstanceOf(obj, MyClass)
       
       local x,y = contact:getNormal()
       if y < -0.6 and y > -1.2 then

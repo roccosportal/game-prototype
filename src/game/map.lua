@@ -73,11 +73,8 @@ end
 
 function Map:initKillAreas()
   if self.mapSTI.layers["killAreas"] then
-    self.killAreas = {}
-    for _,area in pairs(self.mapSTI.layers["killAreas"].objects) do
-      
+    for _,area in pairs(self.mapSTI.layers["killAreas"].objects) do      
         local killArea = KillArea:new(self.world, area.x, area.y, area.width, area.height, area.properties.isCollidable)
-        table.insert(self.killAreas, killArea)
         table.insert(self.objects, killArea)
     end
     self.mapSTI:removeLayer("killAreas")
