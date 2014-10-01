@@ -2,10 +2,12 @@ local class = require('lib/middleclass/middleclass')
 local Physical = class('game.objects.Physical')
 
 
-function Physical:initialize(world, x, y)
+function Physical:initialize(world, x, y, width, height)
     self.world = world
     self.x = x
     self.y = y
+    self.width = width
+    self.height = height
     self.debug = false
     self.physicalObjects = {}
 end
@@ -22,7 +24,7 @@ function Physical:draw()
 end
 
 function Physical:update(dt)
-  
+    
 end
 
 function Physical:registerPhysicalObject(body, shape, fixture)

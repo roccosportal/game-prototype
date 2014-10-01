@@ -1,4 +1,5 @@
 local STI = require("lib/sti")
+local KillArea = require("src/game/objects/KillArea")
 local CoilSpring = require("src/game/objects/CoilSpring")
 
 -- module
@@ -72,37 +73,12 @@ end
 
 function Map:initKillAreas()
   if self.mapSTI.layers["killAreas"] then
-    
-    
-    
-    local function setKillArea(area)
-        local function contactFilter(fixture)
-          -- nothing but player hits me
-          if game.player.fixture ~= fixture then
-            return false
-          end
-          return true
-        end
-        
-        area.body = love.physics.newBody(self.world, area.x + (area.width / 2), area.y + (area.height / 2))
-        area.shape = love.physics.newRectangleShape(0, 0, area.width, area.height)
-        area.fixture = love.physics.newFixture(area.body, area.shape, 5)
-        -- area.body:setActive(false) 
-               
-        -- body object should be used
-        area.x = nil
-        area.y = nil
-        area.width = nil
-        area.height = nil
-        
-        if area.properties.isCollidable ~= nil or area.properties.isCollidable then 
-          game.contactEventManager.register(area.fixture, nil, nil, nil, nil, contactFilter)
-        end
-    end
-
-    self.killAreas = self.mapSTI.layers["killAreas"].objects
-    for _,area in pairs(self.killAreas) do
-        setKillArea(area)
+    self.killAreas = {}
+    for _,area in pairs(self.mapSTI.layers["killAreas"].objects) do
+      
+        local killArea = KillArea:new(self.world, area.x, area.y, area.width, area.height, area.properties.isCollidable)
+        table.insert(self.killAreas, killArea)
+        table.insert(self.objects, killArea)
     end
     self.mapSTI:removeLayer("killAreas")
   end

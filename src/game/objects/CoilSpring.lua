@@ -12,7 +12,8 @@ CoilSpring.static.TRIGGER_HEIGHT = 1
 
 
 function CoilSpring:initialize(world, x, y)
-    Physical.initialize(self, world, x, y)
+    local w = CoilSpring.TRIGGER_WIDTH + 2 * CoilSpring.BORDER_WIDTH
+    Physical.initialize(self, world, x, y, w, CoilSpring.HEIGHT)
     local w_offset = CoilSpring.TRIGGER_WIDTH + CoilSpring.BORDER_WIDTH
     local h_offset = CoilSpring.HEIGHT - CoilSpring.BORDER_HEIGHT
     
