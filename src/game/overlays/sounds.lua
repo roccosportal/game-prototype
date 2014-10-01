@@ -1,9 +1,10 @@
 local Sound = require "src/game/overlays/Sound"
 
 local self = {}
-self.list = {}
+
 
 function self.init()
+    self.list = {}
     self.canvas = love.graphics.newCanvas()
 end
 

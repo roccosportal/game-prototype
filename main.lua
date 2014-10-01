@@ -2,6 +2,7 @@ require("src/helpers")
 require("lib/monocle/monocle")
 menu = require("src/menu/menu")
 game = require("src/game/game")
+levelSelection = require("src/level-selection/level-selection")
 
 state = nil
 

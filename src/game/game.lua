@@ -8,20 +8,22 @@ self.overlays = require("src/game/overlays/overlays")
 self.camera = require("src/game/camera")
 
 
-function self.init()
+function self.init(map)
+    map = map or "maps/test"
+  
     love.physics.setMeter(64)
     
-    world = love.physics.newWorld(0, 9.81*64, true)
+    self.world = love.physics.newWorld(0, 9.81*64, true)
      
-    self.contactEventManager.init(world)
+    self.contactEventManager.init(self.world)
     self.contactEventManager.onBeginContact(beginContact)
     
-    self.map.create("maps/test", world)
+    self.map.create(map, self.world)
     
     -- create player 
     local px, py = self.map.current:getPlayerStartingPosition()
     self.camera:setCenter(px, py)
-    self.player.init(px, py, world)
+    self.player.init(px, py, self.world)
     Monocle.watch("onGround", function() return tostring(game.player.onGround) end)
     
     self.overlays.sounds.init()
@@ -30,7 +32,7 @@ function self.init()
 end
 
 function self.update(dt)
-    world:update(dt)
+    self.world:update(dt)
     self.map.current:update(dt)
     self.player.update(dt)  
     self.overlays.sounds.update(dt)

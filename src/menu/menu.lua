@@ -2,7 +2,7 @@ local self = {}
 
 
 local MENU_STRINGS = {
-    "CONTINUE", "NEW GAME", "EXIT"
+    "CONTINUE", "NEW GAME", "LEVEL SELECTION", "EXIT"
 }
 
 function self.init()
@@ -32,6 +32,9 @@ function self.keypressed(key)
             state = game
         elseif self.selection == 2 then
             state = game
+            state.init()
+        elseif self.selection == 3 then
+            state = levelSelection
             state.init()
         end
     elseif key == "escape" and self.showContinue == true then
