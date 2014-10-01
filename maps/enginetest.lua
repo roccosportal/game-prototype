@@ -264,8 +264,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 417,
-          y = 257.5,
+          x = 369,
+          y = 266.5,
           width = 18.75,
           height = 33.75,
           rotation = 0,
@@ -534,6 +534,20 @@ return {
           visible = true,
           properties = {
             ["id"] = "1"
+          }
+        },
+        {
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 405,
+          y = 250,
+          width = 33,
+          height = 49,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["isStart"] = "true"
           }
         }
       }

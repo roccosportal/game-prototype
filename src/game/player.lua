@@ -2,6 +2,7 @@ self = {}
 
 local class = require('lib/middleclass/middleclass')
 local KillArea = require("src/game/objects/KillArea")
+local SavePoint = require("src/game/objects/SavePoint")
 local Object = class.Object
 
 
@@ -14,17 +15,20 @@ local SIDE_SPEED = 350
 local MAX_SIDE_SPEED = 180
 local JUMP_REACTION = 100
 
-function self.init(x,y, world)
+function self.init(startPoint, world)
   self.groundFixture = nil
   self.onGround = true
   self.isJumping = false
   self.jumpReactionTimer = 0
+  
+  local x, y = startPoint:getCenter()
+  
   -- the starting position marks the center of the ball
   -- we need to translate the position to the upper right corner
   x = x - RADIUS
   y = y - RADIUS
   
-  self.savePoint = {x = x, y = y}
+  self.savePoint = startPoint
   self.body = love.physics.newBody(world, x, y, "dynamic") 
   self.shape = love.physics.newCircleShape(RADIUS) 
   self.fixture = love.physics.newFixture(self.body, self.shape, MASS)
@@ -39,12 +43,14 @@ function self.init(x,y, world)
           if object:isInstanceOf(KillArea) then
             self:kill()
             return nil
+          elseif object:isInstanceOf(SavePoint) then
+            game.player.setSavePoint(object)
+            return nil
           end
           break
         end
       end 
       
-      Object.isInstanceOf(obj, MyClass)
       
       local x,y = contact:getNormal()
       if y < -0.6 and y > -1.2 then
@@ -73,8 +79,9 @@ function self.update(dt)
   
   -- move the player only in the update method, because the body might be locked elsewhere
   if self.moveToSavePoint or love.keyboard.isDown("r") then
-    self.body:setX(self.savePoint.x)
-    self.body:setY(self.savePoint.y)
+    local cx, cy = self.savePoint:getCenter()
+    self.body:setX(cx)
+    self.body:setY(cy)
     self.body:setLinearVelocity(0,0)
     self.body:setAngularVelocity(0)
     game.map.current:resetObjectForSavePoint(self.savePoint.id)
@@ -150,8 +157,8 @@ function self.draw()
     love.graphics.circle("fill", self:getX(), self:getY(), RADIUS)
 end
 
-function self.setSavePoint(x, y, id)
-    self.savePoint = {x = x, y = y, id = id}
+function self.setSavePoint(savePoint)
+    self.savePoint = savePoint
 end
 
 function self.kill()

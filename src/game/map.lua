@@ -1,6 +1,7 @@
 local STI = require("lib/sti")
 local KillArea = require("src/game/objects/KillArea")
 local CoilSpring = require("src/game/objects/CoilSpring")
+local SavePoint = require("src/game/objects/SavePoint")
 
 -- module
 
@@ -13,7 +14,7 @@ function map.create(path, world)
     }
     self.objects = {}
     self.world = world
-    self.player = {x = 0, y = 0}
+    self.startPoint = nil
     self.mapSTI = STI.new(path)
     self.resetObjects = {}
 
@@ -36,12 +37,7 @@ function Map:initDynamicLayer()
   if self.mapSTI.layers["dynamic"] then
     self.dynamics = self.mapSTI.layers["dynamic"]
     for _,object in pairs(self.dynamics.objects) do
-      if object.properties.isPlayer then
-          -- use the center of the object as starting position
-          self.player.x = object.x + object.width / 2
-          self.player.y = object.y + object.height / 2
-          self.dynamics.objects[_] = nil
-      elseif object.shape == "rectangle" then
+      if object.shape == "rectangle" then
         local x, y = object.x + (object.width / 2), object.y + (object.height / 2)
         object.body = love.physics.newBody(self.world, x, y, "dynamic")
         object.shape = love.physics.newRectangleShape(0, 0, object.width, object.height)
@@ -84,37 +80,22 @@ end
 
 function Map:initSavePoints()
   if self.mapSTI.layers["savePoints"] then
-    
-    local function setSavePoint(savePoint) 
-      local function contactFilter(fixture)
-        -- nothing hits me
-        if game.player.fixture == fixture then
-          game.player.setSavePoint(savePoint.body:getX(),savePoint.body:getY(), savePoint.properties.id)
+    local first = true
+    for _,p in pairs(self.mapSTI.layers["savePoints"].objects) do      
+        local savePoint = SavePoint:new(self.world, p.x, p.y, p.width, p.height, p.properties.id)
+        
+        if first or p.properties.isStart == "true" then
+          -- use first save point as starting point or the one that is set to `isStart`
+          first = false
+          self.startPoint = savePoint
         end
-        return false
-      end
-      
-      savePoint.body = love.physics.newBody(self.world, savePoint.x + (savePoint.width / 2), savePoint.y + (savePoint.height / 2))
-      savePoint.shape = love.physics.newRectangleShape(0, 0, savePoint.width, savePoint.height)
-      savePoint.fixture = love.physics.newFixture(savePoint.body, savePoint.shape, 5)
-      
-      -- body object should be used
-      savePoint.x = nil
-      savePoint.y = nil
-      savePoint.width = nil
-      savePoint.height = nil
-      
-      game.contactEventManager.register(savePoint.fixture, nil, nil, nil, nil, contactFilter)
-    end
-    
-    
-  
-    
-    self.savePoints = self.mapSTI.layers["savePoints"].objects
-    for _,savePoint in pairs(self.savePoints) do
-        setSavePoint(savePoint)
+        
+        table.insert(self.objects, savePoint)
     end
     self.mapSTI:removeLayer("savePoints")
+  
+    
+    
   end
 end
 

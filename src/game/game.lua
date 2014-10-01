@@ -21,9 +21,9 @@ function self.init(map)
     self.map.create(map, self.world)
     
     -- create player 
-    local px, py = self.map.current:getPlayerStartingPosition()
-    self.camera:setCenter(px, py)
-    self.player.init(px, py, self.world)
+    local cx, cy = self.map.current.startPoint:getCenter()
+    self.camera:setCenter(cx, cy)
+    self.player.init(self.map.current.startPoint, self.world)
     Monocle.watch("onGround", function() return tostring(game.player.onGround) end)
     
     self.overlays.sounds.init()

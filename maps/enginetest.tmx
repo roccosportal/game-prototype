@@ -34,7 +34,7 @@
  <objectgroup name="dynamic">
   <object x="507" y="276" width="16" height="38"/>
   <object x="585.75" y="282.5" width="10" height="19.25"/>
-  <object x="417" y="257.5" width="18.75" height="33.75">
+  <object x="369" y="266.5" width="18.75" height="33.75">
    <properties>
     <property name="isPlayer" value="true"/>
    </properties>
@@ -102,6 +102,11 @@
   <object x="420" y="519" width="42" height="119">
    <properties>
     <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object x="405" y="250" width="33" height="49">
+   <properties>
+    <property name="isStart" value="true"/>
    </properties>
   </object>
  </objectgroup>
