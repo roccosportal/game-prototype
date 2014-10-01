@@ -1,11 +1,11 @@
-Sound = {}
-Sound.__index = Sound
+local class = require('lib/middleclass/middleclass')
 
+local Sound = class('game.overlays.Sound')
 
-Sound.STATE ={}
-Sound.STATE.CREATION = 1
-Sound.STATE.DYING = 2
-Sound.STATE.DEAD = 3
+Sound.static.STATE ={}
+Sound.static.STATE.CREATION = 1
+Sound.static.STATE.DYING = 2
+Sound.static.STATE.DEAD = 3
 
 local EXPANDING_SPEED = 500
 local RADIUS = 80
@@ -14,8 +14,7 @@ local STARTING_RADIUS = 40
 local STRENGTH_IMPACT = 0.2
 
 
-function Sound.create(x,y, strength)
-  local self = setmetatable({}, Sound)
+function Sound:initialize(x,y, strength)
   self.x = x
   self.y = y
   self.radius = STARTING_RADIUS
@@ -23,7 +22,6 @@ function Sound.create(x,y, strength)
   self.state = Sound.STATE.CREATION
   self.alpha = 255
   self.strength = strength
-  return self
 end
 
 function Sound:update(dt)

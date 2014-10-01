@@ -1,4 +1,4 @@
-require("src/game/overlays/sound")
+local Sound = require "src/game/overlays/Sound"
 
 local self = {}
 self.list = {}
@@ -20,7 +20,7 @@ function self.collision(contact, a, b)
 end
 
 function self.new(x,y, strength)
-    self.list[#self.list+1] = Sound.create(x,y, strength)
+    self.list[#self.list+1] = Sound:new(x,y, strength)
 end
 
 function self.update(dt)
