@@ -1,16 +1,10 @@
 #layers
 
 ##dynamic
-  Contains dynamic rectangles and the starting position of the player. The name have to be ```dynamic```. 
-
-###player starting position
-  Set the customProperty ```isPlayer``` to ```true```. The player will start in the middle of the rectangle.
-  
-###dynamic rectangles
-  The rectangles you place will be dynamic objects. Set ```resetSavePoint``` to the save point id, when this dynamic object should be reset when the player respawns at a certain save point.
+  Contains dynamic rectangles. The name have to be ```dynamic```. The rectangles you place will be dynamic objects. Set ```resetSavePoint``` to the save point id, when this dynamic object should be reset when the player respawns at a certain save point.
 
 ##savePoints
-  Contains the save point areas. The name have to be ```savePoints```. Each rectangle represents a save point. When the player pass through such a save point, the player will respawn after death in the middle of the save point. Set the customProperty ```id``` to assign an identifier.
+  Contains the save point areas. The name have to be ```savePoints```. Each rectangle represents a save point. When the player pass through such a save point, the player will respawn after death in the middle of the save point. Set the customProperty ```id``` to assign an identifier. The player will start at the first save point or the one that has the customProperty ```isStart``` set to ```true```.
   
 ##killAreas
   Contains areas where the player dies when he enters. The name have to be ```killAreas```. Each rectangle represents a kill area. If the customProperty ```isCollidable``` is not set or set to ```true``` other objects can collide with the area.
