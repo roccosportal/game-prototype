@@ -1,4 +1,5 @@
 local STI = require("lib/sti")
+local CoilSpring = require("src/game/objects/CoilSpring")
 
 -- module
 
@@ -9,6 +10,7 @@ function map.create(path, world)
     self.dynamics = {
       objects = {}
     }
+    self.objects = {}
     self.world = world
     self.player = {x = 0, y = 0}
     self.mapSTI = STI.new(path)
@@ -18,7 +20,8 @@ function map.create(path, world)
 		self:initDynamicLayer()
     self:initKillAreas()
     self:initSavePoints()
-    self.mapSTI:initWorldCollision(world)   
+    self:initCoilSprings()
+    self.mapSTI:initWorldCollision(world)  
     map.current = self 
     return self
 end
@@ -142,6 +145,20 @@ function Map:initSavePoints()
   end
 end
 
+function Map:initCoilSprings()
+  if not self.mapSTI.layers["coilSprings"] then
+    return
+  end
+  
+  for _,object in pairs(self.mapSTI.layers["coilSprings"].objects) do
+      local y = object.y + object.height - CoilSpring.HEIGHT -- use the bottom left corner as reference point
+      local coilSpring = CoilSpring:new(self.world,object.x,y)
+      coilSpring.debug = true
+      table.insert(self.objects, coilSpring)
+  end
+  self.mapSTI:removeLayer("coilSprings")
+end
+
 
 function Map:initRopes()
   self.ropes = {}
@@ -194,12 +211,18 @@ end
 
 function Map:update(dt)
     self.mapSTI:update(dt)
-    
+    for _,object in ipairs(self.objects) do
+      object:update(dt)
+    end
   
 end
 
 function Map:draw()
     self.mapSTI:draw()
+    for _,object in ipairs(self.objects) do
+      object:draw()
+    end
+    
     love.graphics.setColor(50, 50, 50)
     for _,object in pairs(self.dynamics.objects) do
           love.graphics.polygon("fill", object.body:getWorldPoints(object.shape:getPoints()))

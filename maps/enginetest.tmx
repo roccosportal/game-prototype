@@ -10,7 +10,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt17EJADAIAMFM5pbZN6Sz0VYS7uAbK8HKtQAAgCumFwBoRNFO5Tkz3AAAAOB/1Y/eBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALznAOdkCAw=
+   eJzt2DEKACAIBVBP5i27b7S12BQJ8R78xemDk0YAAABLdhcAOMgiY8s+p4cdAAAA/K+60U8BAAAAgJf8rwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7pgPTwr0
   </data>
  </layer>
  <objectgroup name="killAreas">
@@ -34,7 +34,7 @@
  <objectgroup name="dynamic">
   <object x="507" y="276" width="16" height="38"/>
   <object x="585.75" y="282.5" width="10" height="19.25"/>
-  <object x="345" y="591.5" width="18.75" height="33.75">
+  <object x="371" y="966.5" width="18.75" height="33.75">
    <properties>
     <property name="isPlayer" value="true"/>
    </properties>
@@ -104,5 +104,8 @@
     <property name="id" value="1"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup name="coilSprings">
+  <object x="507" y="1002" width="24" height="20"/>
  </objectgroup>
 </map>

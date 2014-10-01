@@ -17,3 +17,7 @@
 
 ##ropes
   Each layer represents a single rope. The layer name have to start with ```rope``` to be recognized as a rope. A circle represents a part of the rope. The order of the circles are important. The first circle marks the starting point of the rope and is static. The rope looks more realistic when a lot of circles are used which are close to each other.
+  
+  
+##coilSprings
+  Contains coil springs. The name have to be ```coilSprings```. Each rectangle represents a coil spring. The bottom left corner of the rectangle is the bottom left corner of the coil spring. The size of the rectangle does not matter.

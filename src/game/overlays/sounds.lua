@@ -15,7 +15,7 @@ function self.collision(contact, a, b)
     local bX,bY = b:getBody():getLinearVelocity()
 
     local strength = math.abs(aX) + math.abs(aY) + math.abs(bX) + math.abs(bY)
-    if strength > 200 then
+    if strength > 200 and x and y then
       self.new(x,y,strength)
     end
 end
