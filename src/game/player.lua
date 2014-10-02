@@ -16,6 +16,7 @@ local MAX_SIDE_SPEED = 180
 local JUMP_REACTION = 100
 
 function self.init(startPoint, world)
+  
   self.groundFixture = nil
   self.onGround = true
   self.isJumping = false
@@ -27,7 +28,7 @@ function self.init(startPoint, world)
   -- we need to translate the position to the upper right corner
   x = x - RADIUS
   y = y - RADIUS
-  
+  self.image = love.graphics.newImage("gfx/player/player.png")
   self.savePoint = startPoint
   self.body = love.physics.newBody(world, x, y, "dynamic") 
   self.shape = love.physics.newCircleShape(RADIUS) 
@@ -153,8 +154,8 @@ end
 
 
 function self.draw()
-    love.graphics.setColor(193, 47, 14) 
-    love.graphics.circle("fill", self:getX(), self:getY(), RADIUS)
+    love.graphics.setColor(255, 255, 255) 
+    love.graphics.draw(self.image, self:getX(), self:getY(), self.body:getAngle(), 1, 1, RADIUS, RADIUS)
 end
 
 function self.setSavePoint(savePoint)
