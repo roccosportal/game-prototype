@@ -2,12 +2,13 @@ local class = require('lib/middleclass/middleclass')
 local Physical = class('game.objects.Physical')
 
 
-function Physical:initialize(world, x, y, width, height)
+function Physical:initialize(world, x, y, width, height, type)
     self.world = world
     self.x = x
     self.y = y
     self.width = width
     self.height = height
+    self.type = type
     self.debug = false
     self.physicalObjects = {}
 end
@@ -19,13 +20,12 @@ function Physical:draw()
         love.graphics.polygon("line", o.body:getWorldPoints(o.shape:getPoints()))
       end
     end
-  
-  
 end
 
 function Physical:update(dt)
     
 end
+
 
 function Physical:registerPhysicalObject(body, shape, fixture)
     o = {

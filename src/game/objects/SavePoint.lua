@@ -1,10 +1,19 @@
 local class = require('lib/middleclass/middleclass')
-local Area = require("src/game/objects/Area")
-local SavePoint = class('game.objects.SavePoint', Area)
+local Rectangle = require("src/game/objects/Rectangle")
+
+local EventFull = require("src/mixins/EventFull")
+
+local SavePoint = class('game.objects.SavePoint', Rectangle)
+SavePoint:include(EventFull)
+
 
 function SavePoint:initialize(world, x, y, width, height, id)
-    Area.initialize(self, world, x, y, width, height, false)
+    Rectangle.initialize(self, world, x, y, width, height, "static", false)
     self.id = id
+end
+
+function SavePoint:playerSpawnsHere()
+    self:fireEvent("onRespawn", {self})
 end
 
 return SavePoint

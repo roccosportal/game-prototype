@@ -1,9 +1,9 @@
 local class = require('lib/middleclass/middleclass')
-local Area = require("src/game/objects/Area")
-local KillArea = class('game.objects.KillArea', Area)
+local Rectangle = require("src/game/objects/Rectangle")
+local KillArea = class('game.objects.KillArea', Rectangle)
 
 function KillArea:initialize(world, x, y, width, height, isCollidable)
-    Area.initialize(self, world, x, y, width, height, isCollidable)
+    Rectangle.initialize(self, world, x, y, width, height, "static", isCollidable)
 end
 
 return KillArea

@@ -1,7 +1,10 @@
 local STI = require("lib/sti")
+local class = require ('lib/middleclass/middleclass')
+local Object = class.Object
 local KillArea = require("src/game/objects/KillArea")
 local CoilSpring = require("src/game/objects/CoilSpring")
 local SavePoint = require("src/game/objects/SavePoint")
+local Dynamic = require("src/game/objects/Dynamic")
 
 -- module
 
@@ -16,12 +19,11 @@ function map.create(path, world)
     self.world = world
     self.startPoint = nil
     self.mapSTI = STI.new(path)
-    self.resetObjects = {}
 
     self:initRopes()
-		self:initDynamicLayer()
-    self:initKillAreas()
     self:initSavePoints()
+		self:initDynamics()
+    self:initKillAreas()
     self:initCoilSprings()
     self.mapSTI:initWorldCollision(world)  
     map.current = self 
@@ -33,35 +35,26 @@ end
 Map = {}
 Map.__index = Map
 
-function Map:initDynamicLayer()
-  if self.mapSTI.layers["dynamic"] then
-    self.dynamics = self.mapSTI.layers["dynamic"]
-    for _,object in pairs(self.dynamics.objects) do
-      if object.shape == "rectangle" then
-        local x, y = object.x + (object.width / 2), object.y + (object.height / 2)
-        object.body = love.physics.newBody(self.world, x, y, "dynamic")
-        object.shape = love.physics.newRectangleShape(0, 0, object.width, object.height)
-        object.fixture = love.physics.newFixture(object.body, object.shape, 5)
-        
-      
-        
-        if object.properties.resetSavePoint ~= nil then
-          data = {
-            savePointId = object.properties.resetSavePoint,
-            object = object,
-            x = x,
-            y = y,
-            type = "rectangle"
-          }
-          table.insert(self.resetObjects, data)
+function Map:initDynamics()
+  local function findSavePointById(id)
+    local savePoint = nil
+    if id ~= nil then
+      for _, object in ipairs(self.objects) do
+        if Object.isInstanceOf(object, SavePoint) and object.id == id then
+          savePoint = object
+          break
         end
-        
-        -- body object should be used
-        object.x = nil
-        object.y = nil
-        object.width = nil
-        object.height = nil
       end
+    end
+    return savePoint
+  end
+  
+  
+  if self.mapSTI.layers["dynamic"] then
+    for _, object in pairs(self.mapSTI.layers["dynamic"].objects) do
+        local resetSavePoint = findSavePointById(object.properties.resetSavePoint)
+        local dynamic = Dynamic:new(self.world, object.x, object.y, object.width, object.height, resetSavePoint)
+        table.insert(self.objects, dynamic)
     end
     self.mapSTI:removeLayer("dynamic")
   end
@@ -177,11 +170,6 @@ function Map:draw()
       object:draw()
     end
     
-    love.graphics.setColor(50, 50, 50)
-    for _,object in pairs(self.dynamics.objects) do
-          love.graphics.polygon("fill", object.body:getWorldPoints(object.shape:getPoints()))
-    end
-    
     love.graphics.setColor( 0,0,0 )
     for _,rope in pairs(self.ropes) do
           local lastChain = nil
@@ -211,24 +199,4 @@ function Map:getPlayerStartingPosition()
   return self.player.x, self.player.y
 end
 
-function Map:resetObjectForSavePoint(id)
-  if id == nil then
-    return
-  end
-  
-  for _, object in pairs(self.resetObjects) do
-    if object.savePointId == id then
-        object.object.body:setActive(false)
-        object.object.body:setLinearVelocity(0, 0)
-        object.object.body:setAngularVelocity(0)
-        object.object.body:setX(object.x)
-        object.object.body:setY(object.y)
-        object.object.body:setAngle(0)
-        object.object.body:setActive(true)
-        
-        
-    end
-  end
-end
-  
 return map  

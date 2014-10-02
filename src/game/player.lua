@@ -84,7 +84,7 @@ function self.update(dt)
     self.body:setY(cy)
     self.body:setLinearVelocity(0,0)
     self.body:setAngularVelocity(0)
-    game.map.current:resetObjectForSavePoint(self.savePoint.id)
+    self.savePoint:playerSpawnsHere()
     self.moveToSavePoint = false
   end
   
