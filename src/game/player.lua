@@ -14,6 +14,8 @@ local JUMP_SPEED = 400
 local SIDE_SPEED = 350
 local MAX_SIDE_SPEED = 180
 local JUMP_REACTION = 100
+local BLINK_TIMER = 3000
+local BLINK_DURATION = 100
 
 function self.init(startPoint, world)
   
@@ -21,6 +23,8 @@ function self.init(startPoint, world)
   self.onGround = true
   self.isJumping = false
   self.jumpReactionTimer = 0
+  self.blinkTimer = BLINK_TIMER
+  self.blinkDuration = BLINK_DURATION
   
   local x, y = startPoint:getCenter()
   
@@ -28,7 +32,11 @@ function self.init(startPoint, world)
   -- we need to translate the position to the upper right corner
   x = x - RADIUS
   y = y - RADIUS
-  self.image = love.graphics.newImage("gfx/player/player.png")
+  self.images = {}
+  self.images.player = love.graphics.newImage("gfx/player/player.png")
+  self.images.player_blink = love.graphics.newImage("gfx/player/player_blink.png")
+  self.currentImage = self.images.player
+  
   self.savePoint = startPoint
   self.body = love.physics.newBody(world, x, y, "dynamic") 
   self.shape = love.physics.newCircleShape(RADIUS) 
@@ -137,6 +145,19 @@ function self.update(dt)
     -- decrease jump speed
     self.body:applyForce(0, JUMP_DECREASE)
   end  
+  
+  -- update blink
+  
+  self.blinkTimer = self.blinkTimer - dt * 1000
+  if self.blinkTimer < 0 then
+      self.blinkDuration = self.blinkDuration - dt * 1000
+      self.currentImage = self.images.player_blink
+      if self.blinkDuration < 0 then
+        self.currentImage = self.images.player
+        self.blinkDuration = BLINK_DURATION
+        self.blinkTimer = BLINK_TIMER
+      end
+  end
 end
 
 function self.getX()
@@ -155,7 +176,9 @@ end
 
 function self.draw()
     love.graphics.setColor(255, 255, 255) 
-    love.graphics.draw(self.image, self:getX(), self:getY(), self.body:getAngle(), 1, 1, RADIUS, RADIUS)
+    
+        
+    love.graphics.draw(self.currentImage, self:getX(), self:getY(), self.body:getAngle(), 1, 1, RADIUS, RADIUS)
 end
 
 function self.setSavePoint(savePoint)
