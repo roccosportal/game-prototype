@@ -26,6 +26,7 @@ function self.init(map)
     self.player.init(self.map.current.startPoint, self.world)
     Monocle.watch("onGround", function() return tostring(game.player.onGround) end)
     
+    
     self.overlays.sounds.init()
   
     self.overlays.damage.init()

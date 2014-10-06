@@ -45,6 +45,8 @@ function self.init(startPoint, world)
   self.fixture:setUserData("player")
   self.moveToSavePoint = false
   
+  Monocle.watch("angle", function() return tostring(self.body:getAngle()) end)
+  
   
   local function beginContact(fixture, contact)    
       for _, object in pairs(game.map.current.objects) do
@@ -177,8 +179,22 @@ end
 function self.draw()
     love.graphics.setColor(255, 255, 255) 
     
-        
-    love.graphics.draw(self.currentImage, self:getX(), self:getY(), self.body:getAngle(), 1, 1, RADIUS, RADIUS)
+  
+      local vx, vy = self.body:getLinearVelocity()
+      vy = math.abs(vy)
+    
+      local sx, sy = 1 - vy * 0.0005 , 1.00 + vy * 0.0005
+
+      -- local x, y = 0,0
+      -- x = self:getX() * (self:getX()  / (self:getX() * sx)) -- calculate the positon that will be correct after scaling 
+      -- y = self:getY() * (self:getY()  / (self:getY() * sy)) -- calculate the postion that will be correct after scaling 
+      -- 
+      -- love.graphics.scale(sx, sy)
+      -- love.graphics.draw(self.currentImage, x , y, 0, 1, 1, RADIUS, RADIUS)
+      -- love.graphics.scale(1,1)
+      
+      love.graphics.draw(self.currentImage, self:getX(), self:getY(), 0, sx, sy, RADIUS, RADIUS)
+
 end
 
 function self.setSavePoint(savePoint)
