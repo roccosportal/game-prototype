@@ -25,6 +25,8 @@ function self.init(startPoint, world)
   self.jumpReactionTimer = 0
   self.blinkTimer = BLINK_TIMER
   self.blinkDuration = BLINK_DURATION
+  self.particles = require("src/mixins/Particles")
+  self.particle_collision = game.particles.collision()
   
   local x, y = startPoint:getCenter()
   
@@ -72,6 +74,19 @@ function self.init(startPoint, world)
     
       -- forward collision to sound visualisations
       game.overlays.sounds.collision(contact, self.fixture, fixture)
+      local aX,aY = self.fixture:getBody():getLinearVelocity()
+      local bX,bY = fixture:getBody():getLinearVelocity()
+
+      local strength = math.abs(aX) + math.abs(aY) + math.abs(bX) + math.abs(bY)
+      if strength > 200 then
+        local x,y = contact:getPositions()
+        p = self.particle_collision:clone()
+        self.particles.register(p, x, y)
+        p:setEmissionRate(p:getEmissionRate() + strength * 0.05)
+        p:start()
+      end
+      
+      
   end
 
   local function endContact(fixture, contact)
@@ -160,6 +175,8 @@ function self.update(dt)
         self.blinkTimer = BLINK_TIMER
       end
   end
+  
+  self.particles.update(dt)
 end
 
 function self.getX()
@@ -177,6 +194,7 @@ end
 
 
 function self.draw()
+    self.particles.draw()
     love.graphics.setColor(255, 255, 255) 
     
   
