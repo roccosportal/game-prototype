@@ -1,4 +1,4 @@
-self = {}
+local self = {}
 
 local class = require('lib/middleclass/middleclass')
 local KillArea = require("src/game/objects/KillArea")
@@ -79,13 +79,18 @@ function self.init(startPoint, world)
       local bX,bY = fixture:getBody():getLinearVelocity()
 
       local strength = math.abs(aX) + math.abs(aY) + math.abs(bX) + math.abs(bY)
-      if strength > 200 then
+      if strength > 300 then
+        -- particle
         local x,y = contact:getPositions()
         p = self.particle_collision:clone()
         self.particles:register(p, x, y)
         p:setEmissionRate(p:getEmissionRate() + strength * 0.05)
         p:start()
+        
+        
+        
       end
+      
       
       
   end

@@ -1,10 +1,15 @@
 -- http://nova-fusion.com/2011/04/19/cameras-in-love2d-part-1-the-basics/
 local camera = {}
+local CameraShake = require("src/game/CameraShake")
 camera.x = 0
 camera.y = 0
 camera.scaleX = 1
 camera.scaleY = 1
 camera.rotation = 0
+
+function camera:init()
+  camera.shake =  CameraShake:new(camera)
+end
 
 function camera:set()
   love.graphics.push()
@@ -88,6 +93,8 @@ function camera:update(dt, x, y)
   elseif self.y - wh / 2 + border > y then
       self.y = math.floor(y + wh / 2 - border)
   end
+  
+  camera.shake:update(dt)
 end
 
 function camera:setCenter(x,y)

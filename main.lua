@@ -1,3 +1,5 @@
+class = require('lib/middleclass/middleclass')
+
 require("src/helpers")
 require("lib/monocle/monocle")
 menu = require("src/menu/menu")

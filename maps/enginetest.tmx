@@ -10,7 +10,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2DEKACAIBVBP5i27b7S12BQJ8R78xemDk0YAAABLdhcAOMgiY8s+p4cdAAAA/K+60U8BAAAAgJf8rwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7pgPTwr0
+   eJzt2DEKACAIBdBO1i27b0RLiw42BPEe/MVBBCdtDQAAWPrrAQASPcg4ctZ5ww4AAAD+F93oWao9AAAAAKDi9n8FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMA2AbV6DWA=
   </data>
  </layer>
  <objectgroup name="killAreas">
@@ -34,11 +34,6 @@
  <objectgroup name="dynamic">
   <object x="507" y="276" width="16" height="38"/>
   <object x="585.75" y="282.5" width="10" height="19.25"/>
-  <object x="369" y="266.5" width="18.75" height="33.75">
-   <properties>
-    <property name="isPlayer" value="true"/>
-   </properties>
-  </object>
   <object x="542" y="567" width="9" height="72">
    <properties>
     <property name="resetSavePoint" value="1"/>
@@ -48,6 +43,11 @@
   <object x="635" y="458" width="12" height="32">
    <properties>
     <property name="resetSavePoint" value="1"/>
+   </properties>
+  </object>
+  <object x="1039" y="49" width="100" height="83">
+   <properties>
+    <property name="resetSavePoint" value="start"/>
    </properties>
   </object>
  </objectgroup>
@@ -104,8 +104,9 @@
     <property name="id" value="1"/>
    </properties>
   </object>
-  <object x="405" y="250" width="33" height="49">
+  <object x="966" y="492" width="33" height="49">
    <properties>
+    <property name="id" value="start"/>
     <property name="isStart" value="true"/>
    </properties>
   </object>

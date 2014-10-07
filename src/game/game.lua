@@ -23,11 +23,12 @@ function self.init(map)
     
     -- create player 
     local cx, cy = self.map.current.startPoint:getCenter()
+    self.camera:init()
     self.camera:setCenter(cx, cy)
     self.player.init(self.map.current.startPoint, self.world)
     Monocle.watch("onGround", function() return tostring(game.player.onGround) end)
     
-    
+  
     self.overlays.sounds.init()
   
     self.overlays.damage.init()
@@ -47,7 +48,6 @@ function self.update(dt)
     y =  math.floor(y - wh / 2)
 
     self.camera:update(dt, x, y)
-    
     self.overlays.damage.update(dt)
 end
 
@@ -55,7 +55,6 @@ function self.draw()
     love.graphics.setCanvas()
     
     self.camera:set()
-    
     love.graphics.setBackgroundColor(255, 255, 255)
     love.graphics.clear()
     self.map.current:draw()

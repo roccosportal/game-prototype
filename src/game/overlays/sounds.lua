@@ -17,6 +17,10 @@ function self.collision(contact, a, b)
     local strength = math.abs(aX) + math.abs(aY) + math.abs(bX) + math.abs(bY)
     if strength > 200 and x and y then
       self.new(x,y,strength)
+      
+      if strength > 600 then
+        game.camera.shake:add(strength * 0.0008, 1)
+      end
     end
 end
 
