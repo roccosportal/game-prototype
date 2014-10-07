@@ -3,6 +3,7 @@ self = {}
 local class = require('lib/middleclass/middleclass')
 local KillArea = require("src/game/objects/KillArea")
 local SavePoint = require("src/game/objects/SavePoint")
+local Particles = require("src/game/Particles")
 local Object = class.Object
 
 
@@ -25,7 +26,7 @@ function self.init(startPoint, world)
   self.jumpReactionTimer = 0
   self.blinkTimer = BLINK_TIMER
   self.blinkDuration = BLINK_DURATION
-  self.particles = require("src/mixins/Particles")
+  self.particles = Particles:new()
   self.particle_collision = game.particles.collision()
   
   local x, y = startPoint:getCenter()
@@ -81,7 +82,7 @@ function self.init(startPoint, world)
       if strength > 200 then
         local x,y = contact:getPositions()
         p = self.particle_collision:clone()
-        self.particles.register(p, x, y)
+        self.particles:register(p, x, y)
         p:setEmissionRate(p:getEmissionRate() + strength * 0.05)
         p:start()
       end
@@ -176,7 +177,7 @@ function self.update(dt)
       end
   end
   
-  self.particles.update(dt)
+  self.particles:update(dt)
 end
 
 function self.getX()
@@ -194,7 +195,7 @@ end
 
 
 function self.draw()
-    self.particles.draw()
+    self.particles:draw()
     love.graphics.setColor(255, 255, 255) 
     
   

@@ -1,11 +1,15 @@
-local self = {}
-self.particles = {}
+local class = require('lib/middleclass/middleclass')
+local Particles = class('game.Particles')
 
-function self.register(p, x, y)
+function Particles:initialize()
+  self.particles = {}
+end
+
+function Particles:register(p, x, y)
   table.insert(self.particles, {p = p, x = x, y = y})
 end
 
-function self.update(dt)
+function Particles:update(dt)
   local rl = {}
   for i,particle in ipairs(self.particles) do
     particle.p:update(dt)
@@ -20,10 +24,10 @@ function self.update(dt)
   end
 end
 
-function self.draw()
+function Particles:draw()
   for i,particle in ipairs(self.particles) do
     love.graphics.draw(particle.p, particle.x, particle.y)
   end
 end
 
-return self
+return Particles
