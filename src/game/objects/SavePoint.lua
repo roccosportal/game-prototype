@@ -1,4 +1,3 @@
-local class = require('lib/middleclass/middleclass')
 local Rectangle = require("src/game/objects/Rectangle")
 
 local EventFull = require("src/mixins/EventFull")

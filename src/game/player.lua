@@ -1,6 +1,5 @@
 local self = {}
 
-local class = require('lib/middleclass/middleclass')
 local KillArea = require("src/game/objects/KillArea")
 local SavePoint = require("src/game/objects/SavePoint")
 local Particles = require("src/game/Particles")

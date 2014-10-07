@@ -1,4 +1,3 @@
-local class = require('lib/middleclass/middleclass')
 local Particles = class('game.Particles')
 
 function Particles:initialize()

@@ -1,4 +1,3 @@
-local class = require('lib/middleclass/middleclass')
 local Physical = require("src/game/objects/Physical")
 local CoilSpring = class('game.objects.CoilSpring', Physical)
 

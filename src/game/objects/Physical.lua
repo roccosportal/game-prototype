@@ -1,4 +1,3 @@
-local class = require('lib/middleclass/middleclass')
 local Physical = class('game.objects.Physical')
 
 

@@ -1,5 +1,3 @@
-local class = require('lib/middleclass/middleclass')
-
 local Sound = class('game.overlays.Sound')
 
 Sound.static.STATE ={}
